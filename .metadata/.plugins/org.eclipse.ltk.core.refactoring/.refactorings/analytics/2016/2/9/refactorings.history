@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.macquarie.analytics.createConnection&apos; to &apos;CreateConnection&apos;&#x0A;- Original project: &apos;analytics&apos;&#x0A;- Original element: &apos;com.macquarie.analytics.createConnection&apos;&#x0A;- Renamed element: &apos;com.macquarie.analytics.CreateConnection&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;createConnection&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.macquarie.analytics{createConnection.java[createConnection" matchStrategy="1" name="CreateConnection" qualified="false" references="true" similarDeclarations="false" stamp="1456453616514" textual="false" version="1.0"/>
+</session>
