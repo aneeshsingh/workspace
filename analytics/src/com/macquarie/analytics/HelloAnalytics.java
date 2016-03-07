@@ -5,7 +5,6 @@ import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.gson.GsonFactory;
-
 import com.google.api.services.analytics.Analytics;
 import com.google.api.services.analytics.AnalyticsScopes;
 import com.google.api.services.analytics.model.Accounts;
@@ -18,6 +17,7 @@ import com.google.api.services.analytics.model.GaData.Query;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +33,9 @@ public class HelloAnalytics {
   private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
   private static final String KEY_FILE_LOCATION = "client_secrets.p12";
   private static final String SERVICE_ACCOUNT_EMAIL = "analytics2@analytics-1233.iam.gserviceaccount.com";
-  public static void main(String[] args) {
+  public static HashMap completeGaData(String startDate, String endDate, String url, String action) {
+	   HashMap allGAData = new HashMap();
+	      
     try {
       Analytics analytics = initializeAnalytics();
 
@@ -52,10 +54,7 @@ public class HelloAnalytics {
       printColumnHeaders(gaData);
       printDataTable(gaData);
       
-      String startDate = "2016-01-01";
-      String endDate = "2016-03-01";
-      String url = "/au/personal/campaigns/cards/special-offer-qantas-black/";
-      String action = "";
+      
      
       GaData gaDataConv = GetConversion.executeViewsDataQuery(analytics, table_id, startDate, endDate, url, action);
       printReportInfo(gaDataConv);
@@ -85,11 +84,22 @@ public class HelloAnalytics {
       GaData gaReferralData = GetReferralData.executeReferralDataQuery(analytics, table_id, startDate, endDate, url);
       printDataTable(gaReferralData);
       
+   
+      allGAData.put("gaDataConv", printHTMLDataTable(gaDataConv));
+      allGAData.put("gaDataScreenSizes", printHTMLDataTable(gaDataScreenSizes));
+      allGAData.put("gaDataDevices", printHTMLDataTable(gaDataDevices));
+      allGAData.put("gaDataTime", printHTMLDataTable(gaDataTime));
+      allGAData.put("gaReturningNew", printHTMLDataTable(gaReturningNew));
+      allGAData.put("gaGeneralData", printHTMLDataTable(gaGeneralData));
+      allGAData.put("gaReferralData", printHTMLDataTable(gaReferralData));
+      
+      return allGAData;
       
       
     } catch (Exception e) {
       e.printStackTrace();
     }
+	return allGAData;
   }
 
   private static Analytics initializeAnalytics() throws Exception {
@@ -298,6 +308,53 @@ public class HelloAnalytics {
       System.out.println("No data");
     }
   }
+  
+  
+  /**
+   * Prints all the rows of data returned by the API.
+   *
+   * @param gaData the data returned from the API.
+   */
+  private static String printHTMLDataTable(GaData gaData) {
+	  
+	  String HTMLformatted = "<table>";
+	 
+	  
+    if (gaData.getTotalResults() > 0) {
+      System.out.println("Data Table:");
+
+      // Print the column names.
+      for (ColumnHeaders header : gaData.getColumnHeaders()) {
+        System.out.format("%-32s", header.getName());
+        
+        HTMLformatted = HTMLformatted + "<th>" +header.getName()+"</th>";	          
+      }
+      System.out.println();
+
+      // Print the rows of data.
+      for (List<String> rowValues : gaData.getRows()) {
+    	  
+    	  HTMLformatted = HTMLformatted + "<tr>";
+    	  
+        for (String value : rowValues) {
+          System.out.format("%-32s", value);
+          
+          HTMLformatted = HTMLformatted + "<td>"+value+"</td>";
+        }
+        
+        HTMLformatted = HTMLformatted + "</tr>";
+        System.out.println();
+      }
+    } else {
+    	  
+        HTMLformatted = HTMLformatted + "<tr><td> No Data</td></tr>";
+      System.out.println("No data");
+    }
+    
+    HTMLformatted = HTMLformatted + "</table>";
+    return HTMLformatted;
+  }
+  
   
   private static void printResults(GaData results) {
     // Parse the response from the Core Reporting API for

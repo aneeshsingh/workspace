@@ -15,4 +15,20 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
+		<servlet>
+		<servlet-name>getAnalyticsServlet</servlet-name>
+		<servlet-class>com.macquarie.analytics.GetAnalyticsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getAnalyticsServlet</servlet-name>
+		<url-pattern>/getAnalyticsServlet</url-pattern>
+	</servlet-mapping>	
+		<servlet>
+		<servlet-name>ResultsDashboard</servlet-name>
+		<jsp-file>/ResultsDashboard.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ResultsDashboard</servlet-name>
+		<url-pattern>/ResultsDashboard/*</url-pattern>
+	</servlet-mapping>
 </web-app>

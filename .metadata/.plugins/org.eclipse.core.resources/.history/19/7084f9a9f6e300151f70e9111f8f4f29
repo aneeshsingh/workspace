@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="en-US" lang="en-US">
+
+<%@ page import="com.macquarie.analytics.*"%>
+<%@ page import="java.util.HashMap"%>
+<%@ page import="java.util.Iterator"%>
+<%@ page import="java.util.Map"%>
+<%@ page import="java.sql.Connection"%>
+<%@page language="java" session="true"%>
+<%
+	if (session.getAttribute("user_id") == null) {
+		response.sendRedirect("login.jsp");
+	} else if (session.getAttribute("user_id").equals("admin")) {
+		response.sendRedirect("admin.jsp");
+	} else if (session.getAttribute("authenticated").equals("yes")) {
+%>
+<head>
+
+</head>
+<body >
+
+
+	<%
+				String user_id = "";
+				String emailAddress = "";
+				String mobile_no = "";
+				String first_name = "";
+				String profile_picture = "";
+
+				HashMap overallResultMap = new HashMap();
+				try {
+					user_id = (String) session.getAttribute("user_id");
+					first_name = (String) session.getAttribute("first_name");
+					profile_picture = (String) session.getAttribute("profile_picture");
+					emailAddress = (String) session.getAttribute("emailAddress");
+					mobile_no = (String) session.getAttribute("mobile_no");
+					overallResultMap = (HashMap) request.getAttribute("completeUserDetails");
+					
+					/* System.out.println("overallResultMap -->"+overallResultMap); */
+					try {
+						if (overallResultMap.isEmpty()) {
+
+							Connection conn = createConnection.createConnection();
+							overallResultMap = userDetailsDao.firstTimeRegisterLogin(user_id, conn);
+						}
+					} catch (NullPointerException e) {
+						Connection conn = createConnection.createConnection();
+						overallResultMap = userDetailsDao.firstTimeRegisterLogin(user_id, conn);
+					}
+					/* System.out.println("overallResultMap received in JSP:"+overallResultMap); */
+					HashMap userData = new HashMap();
+					HashMap gameChallengeRequests = new HashMap();
+					HashMap getFriendRequests = new HashMap();
+					HashMap getGameChallenges = new HashMap();
+					
+					HashMap ChallengeRequests = new HashMap();
+					HashMap getChallenges = new HashMap();
+
+					Boolean emptyuserData = false;
+					Boolean emptygames = false;
+					Boolean emptygameChallengeRequests = false;
+					Boolean emptygetFriendRequests = false;
+					
+					Boolean emptyChallengeRequests = false;
+					Boolean emptyChallenges = false;
+
+					if (user_id != null) {
+						try {
+							userData = (HashMap) overallResultMap.get("userData");
+							////System.out.println("userData received in JSP:"+userData);
+						} catch (NullPointerException e) {
+							//e.printStackTrace();
+							emptyuserData = true;
+						}
+
+
+						try {
+							getGameChallenges = (HashMap) overallResultMap.get("getGameChallenges");
+							if(getGameChallenges.isEmpty()){
+								emptygames = true;
+							}
+						} catch (NullPointerException e) {
+							emptygames = true;
+						}
+						
+						/* Get all challenge created by me */
+						
+						try {
+							getChallenges = (HashMap) overallResultMap.get("getChallenges");
+							if(getChallenges.isEmpty()){
+								emptyChallenges = true;
+							}
+						} catch (NullPointerException e) {
+							emptyChallenges = true;
+						}
+						
+						/* Get all challenge requests */
+						try {
+							ChallengeRequests = (HashMap) overallResultMap.get("ChallengeRequests");
+							if(ChallengeRequests.isEmpty()){
+								emptyChallengeRequests = true;
+							}
+						} catch (NullPointerException e) {
+							emptyChallengeRequests = true;
+						}
+
+
+						try {
+							getFriendRequests = (HashMap) overallResultMap.get("getFriendRequests");
+							System.out.println("getFriendRequests -->"+getFriendRequests);
+							////System.out.println("getFriendRequests received in JSP:"+getFriendRequests);
+						} catch (NullPointerException e) {
+							//e.printStackTrace();
+							emptygetFriendRequests = true;
+						}
+
+						try {
+							gameChallengeRequests = (HashMap) overallResultMap.get("gameChallengeRequests");
+							System.out.println("gameChallengeRequests received in JSP:" + gameChallengeRequests);
+							if(gameChallengeRequests.isEmpty()){
+								emptygameChallengeRequests = true;
+							}
+
+						} catch (NullPointerException e) {
+							//e.printStackTrace();
+							emptygameChallengeRequests = true;
+						}
+					
+							
+		%>
+
+	
+				
+				<%
+
+				
+				if(!emptyChallengeRequests || !emptyChallenges){
+					%>
+					<p class="intro">Below is the list of all the challenges that you have accepted, challenged invites that are pending and challenge which need to assigned a winner</p>
+					<%
+					
+					HashMap overallChallengeMap = new HashMap(getChallenges);
+					overallChallengeMap.putAll(ChallengeRequests);
+					
+					
+					Iterator it = overallChallengeMap.entrySet().iterator();
+
+					int challengeCounter = 1;
+					while (it.hasNext()) {
+
+						Map.Entry pair = (Map.Entry) it.next();
+						String challenge_id = pair.getKey().toString();
+						HashMap game_details = (HashMap) pair.getValue();
+						
+						String creator_user_id = (String) game_details.get("creatorId");
+						String where = (String) game_details.get("where");
+						String what = (String) game_details.get("what");
+						String when = (String) game_details.get("when");
+						String playerId = (String) game_details.get("playerId");
+						String first_name_creator = (String) game_details.get("first_name");
+						String profile_picture_creator = (String) game_details.get("profile_picture");
+						String challenge_status = (String) game_details.get("challenge_status");
+						String points = (String) game_details.get("points");
+						boolean acceptedGame = true;
+						
+						if (challenge_status.equalsIgnoreCase("Active")) {
+							challenge_status = "Mark Winners";
+							acceptedGame = false;
+						} else if (challenge_status.equalsIgnoreCase("acceptance")) {
+							challenge_status = "Result Yet to be accepted";
+							acceptedGame = false;
+							
+						} else if (challenge_status.equalsIgnoreCase("Created")) {
+							challenge_status = "Challenge Created";
+							
+						}
+						else if (challenge_status.equalsIgnoreCase("requested")) {
+							challenge_status = "Invitation Pending";
+							acceptedGame = false;
+						} 
+						
+						else if (challenge_status.equalsIgnoreCase("Accepted")) {
+							challenge_status = "Invitation Accepted";
+							
+						} else {
+							challenge_status = challenge_status;
+						}
+					
+	%>	
+
+</body>
+
+<%
+
+	} else {
+	}
+%>
+</html>
