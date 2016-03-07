@@ -5,11 +5,16 @@
 <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
 <fullyQualifiedTypeName name="java.sql.Connection"/>
 <fullyQualifiedTypeName name="com.macquarie.analytics.CreateConnection"/>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="com.macquarie.analytics.GetConversion"/>
 <fullyQualifiedTypeName name="com.macquarie.analytics.GetScreenSizes"/>
 <fullyQualifiedTypeName name="com.macquarie.analytics.GetDevices"/>
 <fullyQualifiedTypeName name="com.macquarie.analytics.GetReturningNew"/>
 <fullyQualifiedTypeName name="com.macquarie.analytics.GetGeneralData"/>
 <fullyQualifiedTypeName name="com.macquarie.analytics.GetReferralData"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="it.grabz.grabzit.GrabzItClient"/>
+<fullyQualifiedTypeName name="it.grabz.grabzit.enums.ImageFormat"/>
+<fullyQualifiedTypeName name="it.grabz.grabzit.enums.BrowserType"/>
+<fullyQualifiedTypeName name="com.mysql.jdbc.Statement"/>
+<fullyQualifiedTypeName name="java.lang.ArrayIndexOutOfBoundsException"/>
 </qualifiedTypeNameHistroy>

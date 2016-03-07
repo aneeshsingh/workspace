@@ -137,18 +137,18 @@
 			<div class="col-md-push-3 col-md-6">
 				<form action="AddProductPageSixServlet" method="post">
 					<div class="form-group">
-						<label>Upload Desktop Design</label>
-							<input type="file" name="file_desktop" id="file_desktop" />
+						<label>Notifications and other fields (To Be Designed First)</label>
+							<!-- <input type="file" name="file_desktop" id="file_desktop" /> -->
 						</div>
 						<div class="form-group">
-							<label>Upload Tablet Design</label>
-							<input type="file" name="file_tablet" id="file_tablet" />
+							<label></label>
+							<!-- <input type="file" name="file_tablet" id="file_tablet" /> -->
 						</div>
 						<div class="form-group">
-							<label>Upload Mobile Design</label>
-							<input type="file" name="file_mobile" id="file_mobile" />
+							<label></label>
+							<!-- <input type="file" name="file_mobile" id="file_mobile" /> -->
 					</div>
-					<input type="hidden" name="product_id" id="prpduct_id" value="<%=request.getParameter("product_id")%>"/>
+						<input type="hidden" name="product_id" id="product_id" value="<%=request.getAttribute("product_id")%>"/>
 					<button type="submit" class="btn btn-primary btn-block text-right">Complete</button>
 				</form>
 			</div>

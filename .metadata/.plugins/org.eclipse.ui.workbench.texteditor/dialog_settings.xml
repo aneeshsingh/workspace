@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="245" key="DIALOG_WIDTH"/>
-		<item value="184" key="DIALOG_Y_ORIGIN"/>
-		<item value="379" key="DIALOG_HEIGHT"/>
-		<item value="598" key="DIALOG_X_ORIGIN"/>
+		<item value="265" key="DIALOG_WIDTH"/>
+		<item value="193" key="DIALOG_Y_ORIGIN"/>
+		<item value="850" key="DIALOG_X_ORIGIN"/>
+		<item value="399" key="DIALOG_HEIGHT"/>
 		<item value="1|.SF NS Text|11.0|0|COCOA|1|.SFNSText-Regular" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="isRegEx"/>
 		<item value="false" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="executeDataQuery" key="selection"/>
+		<item value="competitor_primary_url" key="selection"/>
 		<list key="findhistory">
+			<item value="competitor_url"/>
+			<item value="previous_"/>
+			<item value="col-md-6"/>
+			<item value="printDataTable"/>
+			<item value="I am here"/>
+			<item value="i am here"/>
+			<item value="GetAnalyticsServlet"/>
 			<item value="executeDataQuery"/>
 		</list>
 		<list key="replacehistory">
+			<item value="competitor_primary_url"/>
+			<item value="new_"/>
+			<item value="col-md-12"/>
 		</list>
 	</section>
 </section>

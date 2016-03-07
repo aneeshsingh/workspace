@@ -136,7 +136,6 @@
 			<div class="row">
 				<div class="col-md-push-3 col-md-6">
 					<form action="AddProductPageFiveServlet" method="post">
-					<form action="AddProductPageSixServlet" method="post">
 						<div class="form-group">
 							<label>Upload Desktop Design</label>
 							<input type="file" name="file_desktop" id="file_desktop" />
@@ -149,7 +148,7 @@
 							<label>Upload Mobile Design</label>
 							<input type="file" name="file_mobile" id="file_mobile" />
 						</div>
-						<input type="hidden" name="product_id" id="prpduct_id" value="<%=request.getParameter("product_id")%>"/>
+						<input type="hidden" name="product_id" id="product_id" value="<%=request.getAttribute("product_id")%>"/>
 						<button type="submit" class="btn btn-primary btn-block text-right">Proceed To Step #6</button>
 					</form>
 				</div>

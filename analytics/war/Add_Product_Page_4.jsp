@@ -29,8 +29,21 @@
 <!-- Morris Charts CSS -->
 <link href="bower_components/morrisjs/morris.css" rel="stylesheet">
 
+<<<<<<< Updated upstream
 <!-- Custom Fonts -->
 <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+=======
+			<div class="col-md-12">
+			<input type="text" name="primary_url" id="primary_url" placeholder="Primary URL">
+			<input type="text" name="competitor_primary_url_1" id="competitor_primary_url_1" placeholder="Competitor URL #1">
+			<input type="text" name="competitor_primary_url_2" id="competitor_primary_url_2" placeholder="Competitor URL #2">
+			<input type="text" name="competitor_primary_url_3" id="competitor_primary_url_3" placeholder="Competitor URL #3">
+			<input type="text" name="competitor_primary_url_4" id="competitor_primary_url_4" placeholder="Competitor URL #4">
+			<input type="text" name="competitor_primary_url_5" id="competitor_primary_url_5" placeholder="Competitor URL #5">
+			
+			</div>
+		</div>
+>>>>>>> Stashed changes
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,7 +52,19 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+<<<<<<< Updated upstream
 </head>
+=======
+			<div class="col-md-12">
+			
+			<input type="text" name="campaign_URL" id="campaign_URL" placeholder="Campaign URL">
+			<input type="text" name="competitor_campaign_url_1" id="competitor_campaign_url_1" placeholder="Competitor URL #1">
+			<input type="text" name="competitor_campaign_url_2" id="competitor_campaign_url_2" placeholder="Competitor URL #2">
+			<input type="text" name="competitor_campaign_url_3" id="competitor_campaign_url_3" placeholder="Competitor URL #3">
+			<input type="text" name="competitor_campaign_url_4" id="competitor_campaign_url_4" placeholder="Competitor URL #4">
+			<input type="text" name="competitor_campaign_url_5" id="competitor_campaign_url_5" placeholder="Competitor URL #5">
+						</div>
+>>>>>>> Stashed changes
 
 <body>
 <div id="wrapper"> 
@@ -150,7 +175,7 @@
 						<input type="text" class="form-control" name="competitor_campaign_url_4" id="competitor_campaign_url_4" placeholder="Competitor URL #4">
 						<input type="text" class="form-control" name="competitor_campaign_url_5" id="competitor_campaign_url_5" placeholder="Competitor URL #5">
 					</div>
-					<input type="hidden" name="product_id" id="prpduct_id" value="<%=request.getParameter("product_id")%>"/>
+						<input type="hidden" name="product_id" id="product_id" value="<%=request.getAttribute("product_id")%>"/>
 					<button type="submit" class="btn btn-primary btn-block text-right">Proceed To Step #5</button>
 				</form>
 			</div>

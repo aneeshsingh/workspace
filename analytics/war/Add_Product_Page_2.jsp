@@ -152,7 +152,7 @@
 							<input type="text" class="form-control" name="previous_campaign_url_3" id="previous_campaign_url_3" placeholder="Campaign URL">
 							<input type="text" class="form-control" name="previous_campaign_url_leads_3" id="previous_campaign_url_leads_3" placeholder="Campaign Leads">
 						</div>
-						<input type="hidden" name="product_id" id="prpduct_id" value="<%=request.getParameter("product_id")%>"/>
+						<input type="hidden" name="product_id" id="product_id" value="<%=request.getAttribute("product_id")%>"/>
 						<button type="submit" class="btn btn-primary btn-block text-right">Proceed To Step #3</button>
 					</form>
 				</div>

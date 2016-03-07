@@ -1,0 +1,43 @@
+package com.macquarie.analytics;
+
+
+import it.grabz.grabzit.GrabzItClient;
+import it.grabz.grabzit.enums.BrowserType;
+import it.grabz.grabzit.enums.ImageFormat;
+
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+
+public class screenCapture {
+ public static void main(String[] args) throws Exception{
+	 GrabzItClient grabzIt = new GrabzItClient("NjFjMzdjNTg4ZDcxNDc4ZDhkNzc4NTMyNDQ3YTEwZTg=", "P0M/Uj8/P3Y/P1o/Pys/P3hBbD8/PzA/Pz96Pz8/Pz8=");
+	 
+	// To take a image screenshot
+	 
+	 String url = "http://www.macquarie.com/au/personal/home-loans/basic";
+	 String customId = "";
+	 int browserWidth = 375;
+	 int browserHeight = -1;
+	 int outputWidth = -1;
+	 int outputHeight = -1;
+	 ImageFormat format = ImageFormat.JPG;
+	 int delay = 0;
+	 String targetElement = "";
+	 BrowserType requestAs = BrowserType.MOBILEBROWSER;
+	 String customWaterMarkId = "";
+	 
+	 grabzIt.SetImageOptions(url, customId, browserWidth, browserHeight, outputWidth, outputHeight, format, delay, targetElement, requestAs, customWaterMarkId);
+	 
+	 String filepath = "screenshot-main-mobile.jpg";
+	 grabzIt.SaveTo(filepath);
+	 
+	 browserWidth = 1920;
+	 requestAs = BrowserType.STANDARDBROWSER;
+	 
+	 grabzIt.SetImageOptions(url, customId, browserWidth, browserHeight, outputWidth, outputHeight, format, delay, targetElement, requestAs, customWaterMarkId);
+	 
+	 String filepathDesktop = "screenshot-main-desktop.jpg";
+	 grabzIt.SaveTo(filepathDesktop);
+	 
+ }
+}

@@ -41,14 +41,15 @@ public class AddProductPageOne {
 
 		PreparedStatement stmt = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
 			
-			product_id = stmt.executeUpdate();
+			stmt.executeUpdate();
+			
+			ResultSet keys = stmt.getGeneratedKeys();    
+			keys.next();  
+			product_id = keys.getInt(1);
+
 				System.out.println("Product_Details_1 were inserted");
-		
-	
-		
 
 	}
-
 	catch (SQLException e) {
 		product_id = 0;
 		e.printStackTrace();

@@ -14,7 +14,7 @@ public class screenCapture {
 	 
 	// To take a image screenshot
 	 
-	 String url = "http://www.macquarie.com/au/personal/home-loans/basic";
+	 String url = "http://www.macquarie.com/au/advisers/specialist-support";
 	 String customId = "";
 	 int browserWidth = 375;
 	 int browserHeight = -1;
@@ -28,7 +28,7 @@ public class screenCapture {
 	 
 	 grabzIt.SetImageOptions(url, customId, browserWidth, browserHeight, outputWidth, outputHeight, format, delay, targetElement, requestAs, customWaterMarkId);
 	 
-	 String filepath = "screenshot-main-mobile.jpg";
+	 String filepath = "adviser-screenshot-main-mobile.jpg";
 	 grabzIt.SaveTo(filepath);
 	 
 	 browserWidth = 1920;
@@ -36,7 +36,7 @@ public class screenCapture {
 	 
 	 grabzIt.SetImageOptions(url, customId, browserWidth, browserHeight, outputWidth, outputHeight, format, delay, targetElement, requestAs, customWaterMarkId);
 	 
-	 String filepathDesktop = "screenshot-main-desktop.jpg";
+	 String filepathDesktop = "adviser-screenshot-main-desktop.jpg";
 	 grabzIt.SaveTo(filepathDesktop);
 	 
  }

@@ -15,16 +15,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 public class AddProductPageFour {
-	public static String insertProductDetailsOne(String product_id, String new_campaign_url_1, 
-			String new_campaign_url_2, String new_campaign_url_3, String new_campaign_url_leads_1, 
-			String new_campaign_url_leads_2, String new_campaign_url_leads_3) throws ClassNotFoundException, UnsupportedEncodingException {		
+	public static String insertProductDetailsOne(String product_id, String primary_url, String campaign_URL, String competitor_primary_url_1, 
+			String competitor_primary_url_2, String competitor_primary_url_3,String competitor_primary_url_4, 
+			String competitor_primary_url_5, String competitor_campaign_url_1, String competitor_campaign_url_2, String competitor_campaign_url_3,
+			String competitor_campaign_url_4,String competitor_campaign_url_5) throws ClassNotFoundException, UnsupportedEncodingException {		
 		
 	String success = product_id;
 
@@ -32,28 +32,65 @@ public class AddProductPageFour {
 
 	conn = CreateConnection.createConnection();
 
-	try {
-		/* Check if this is first time upload */
+	 String[] competitor_primary_urls = new String[5];
+	 
+	 competitor_primary_urls[0] = competitor_primary_url_1;
+	 competitor_primary_urls[1] = competitor_primary_url_2;
+	 competitor_primary_urls[2] = competitor_primary_url_3;
+	 competitor_primary_urls[3] = competitor_primary_url_4;
+	 competitor_primary_urls[4] = competitor_primary_url_5;
+	 
+	 
+	 String[] competitor_campaign_urls = new String[5];
+	 
+	 competitor_campaign_urls[0] = competitor_campaign_url_1;
+	 competitor_campaign_urls[1] = competitor_campaign_url_2;
+	 competitor_campaign_urls[2] = competitor_campaign_url_3;
+	 competitor_campaign_urls[3] = competitor_campaign_url_4;
+	 competitor_campaign_urls[4] = competitor_campaign_url_5;	 
+	 
+	try {		
+
 		
+		for(int i=0;  i< 5; i++){
+			
 			
 		
-		String statement = 
-				"INSERT INTO `analytics`.`Product_Details_3` (`Product_ID`, `New_Campaign_URL`, `Target_Leads`) VALUES ('"+product_id+"', '"+new_campaign_url_1+"', '"+new_campaign_url_leads_1+"'); "
-				+ "INSERT INTO `analytics`.`Product_Details_3` (`Product_ID`, `New_Campaign_URL`, `Target_Leads`) VALUES ('"+product_id+"', '"+new_campaign_url_2+"', '"+new_campaign_url_leads_2+"');"
-				+ "INSERT INTO `analytics`.`Product_Details_3` (`Product_ID`, `New_Campaign_URL`, `Target_Leads`) VALUES ('"+product_id+"', '"+new_campaign_url_3+"', '"+new_campaign_url_leads_3+"');";
-		PreparedStatement stmt = conn.prepareStatement(statement);
-			int queryResult = 2;
-			queryResult = stmt.executeUpdate();
-			if (queryResult == 1) {
+			String statement = 
+					"INSERT INTO `analytics`.`Product_Details_4` (`Product_ID`, `Main_URL`, `Competitor_URL`) VALUES ('"+product_id+"', '"+primary_url+"', '"+competitor_primary_urls[i]+"');";
+			PreparedStatement stmt = conn.prepareStatement(statement);
+				int queryResult = 2;
+				queryResult = stmt.executeUpdate();
+				if (queryResult == 1) {
+					
+					System.out.println("Product_Details_4 were inserted");
+				} else{
+					success ="false";
+					System.out.println("There was an error while inserting product_details_2");
+				}
 				
-				System.out.println("Product_Details_3 were inserted");
-			} else{
-				success ="false";
-				System.out.println("There was an error while inserting product_details_3");
-			}
-	
+		}	
 		
-
+		
+		for(int i=0;  i< 5; i++){
+			
+			
+		
+			String statement = 
+					"INSERT INTO `analytics`.`Product_Details_4` (`Product_ID`, `Main_URL`, `Competitor_URL`) VALUES ('"+product_id+"', '"+campaign_URL+"', '"+competitor_campaign_urls[i]+"');";
+			PreparedStatement stmt = conn.prepareStatement(statement);
+				int queryResult = 2;
+				queryResult = stmt.executeUpdate();
+				if (queryResult == 1) {
+					
+					System.out.println("Product_Details_4 were inserted");
+				} else{
+					success ="false";
+					System.out.println("There was an error while inserting product_details_2");
+				}
+				
+		}	
+			
 	}
 
 	catch (SQLException e) {

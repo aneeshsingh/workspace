@@ -25,31 +25,31 @@ public class AddProductPageFiveServlet extends HttpServlet{
 		response.setContentType("text/html");  
 		PrintWriter out = response.getWriter();  
 		HttpSession session = request.getSession(false);
-		String product_name = (String) request.getParameter("product_name");  
-		String primary_url = (String) request.getParameter("primary_url");  
-		String previous_url = (String) request.getParameter("previous_url");
-		String market_spend = (String) request.getParameter("market_spend");
-		
-		
-		
+		String product_id = (String) request.getParameter("product_id");
+		String file_desktop = (String) request.getParameter("file_desktop");
+		String file_tablet = (String) request.getParameter("file_tablet");  
+		String file_mobile = (String) request.getParameter("file_mobile");
+
+
 		String success="false";
 
 		try {
-			success = AddProductPageFive.insertProductDetailsOne(product_name, primary_url, previous_url, market_spend);
+			success = AddProductPageFive.insertProductDetailsOne(product_id, file_desktop, file_tablet, file_mobile);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
+
 		}
 
 		System.out.println("success"+success);
 
 
-		if(success.equalsIgnoreCase("true")){			
-			
-				request.setAttribute("success", "true");
-				RequestDispatcher rd=request.getRequestDispatcher("Add_Product_Page_6");  
-				rd.forward(request,response); 
+		if(!success.equalsIgnoreCase("false")){			
+
+			request.setAttribute("success", "true");
+			request.setAttribute("product_id", success);
+			RequestDispatcher rd=request.getRequestDispatcher("Add_Product_Page_6");  
+			rd.forward(request,response); 
 
 		}
 

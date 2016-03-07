@@ -15,54 +15,49 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 public class AddProductPageFive {
-	public static String insertProductDetailsOne(String product_name, String primary_url, String previous_url, String market_spend) throws ClassNotFoundException, UnsupportedEncodingException {		
-		
-	String success ="false";
+	public static String insertProductDetailsOne(String product_id,String file_desktop,String file_tablet,String file_mobile) throws ClassNotFoundException, UnsupportedEncodingException {		
 
-	Connection conn = null;
+		String success = product_id;
 
-	conn = CreateConnection.createConnection();
+		Connection conn = null;
 
-	try {
-		/* Check if this is first time upload */
-		
-			
-		
-		String statement = "INSERT INTO `analytics`.`Product_Details_1` (`Product_Name`, `Primay_URL`, `Previous_URL`, `Market_Spend`) VALUES ('"+product_name+"','"+primary_url+"', '"+previous_url+"', '"+market_spend+"');";
+		conn = CreateConnection.createConnection();
 
-		PreparedStatement stmt = conn.prepareStatement(statement);
+
+
+		try {		
+
+			String statement = 
+					"INSERT INTO `analytics`.`Product_Details_5` (`Product_ID`,`Desktop_Design`,`Tablet_Design`,`Mobile_Design`) VALUES ('"+product_id+"','"+file_desktop+"','"+file_tablet+"','"+file_mobile+"');";
+			PreparedStatement stmt = conn.prepareStatement(statement);
 			int queryResult = 2;
 			queryResult = stmt.executeUpdate();
 			if (queryResult == 1) {
-				success = "true";
-				System.out.println("Product_Details_1 were inserted");
+
+				System.out.println("Product_Details_5 were inserted");
 			} else{
 				success ="false";
-				System.out.println("There was an error while inserting product_details_1");
+				System.out.println("There was an error while inserting product_details_2");
 			}
-	
-		
 
-	}
+		}
 
-	catch (SQLException e) {
-		success ="false";
-		e.printStackTrace();
-	}
-	catch (NullPointerException e)
-	{
-		success ="false";
-		e.printStackTrace();
-	}
+		catch (SQLException e) {
+			success ="false";
+			e.printStackTrace();
+		}
+		catch (NullPointerException e)
+		{
+			success ="false";
+			e.printStackTrace();
+		}
 
-	return success;
+		return success;
+	}
 }
-}
- 
