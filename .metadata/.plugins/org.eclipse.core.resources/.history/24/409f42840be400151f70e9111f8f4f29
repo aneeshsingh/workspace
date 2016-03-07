@@ -1,0 +1,14 @@
+package com.macquarie.analytics;
+
+
+import java.io.File;
+import java.util.concurrent.TimeUnit;
+
+
+
+public class screenCapture {
+
+ public static void main(Args {]){
+	 
+ }
+}

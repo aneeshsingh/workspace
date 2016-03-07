@@ -1,0 +1,10 @@
+package com.macquarie.analytics;
+
+
+import java.io.File;
+
+public class screenCapture {
+ public static void main(String[] args){
+	 GrabzItClient grabzIt = new GrabzItClient("APPLICATION KEY", "APPLICATION SECRET");
+ }
+}

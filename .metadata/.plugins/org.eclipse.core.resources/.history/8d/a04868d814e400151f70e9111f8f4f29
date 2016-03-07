@@ -1,0 +1,85 @@
+package com.macquarie.analytics;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+
+import java.io.UnsupportedEncodingException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+public class AddProductPageOne {
+	public static String updateGifts(String user_id, String gifts) throws ClassNotFoundException, UnsupportedEncodingException {		
+		
+	String success ="false";
+
+	Connection conn = null;
+
+	conn = CreateConnection.createConnection();
+
+	try {
+		/* Check if this is first time upload */
+		ResultSet rs1 = conn.createStatement().executeQuery("SELECT id FROM keyaccess.task_gifts where user_id = '"+user_id+"';");
+		if (!rs1.next()) 
+		{
+
+			String statement = "INSERT INTO `keyaccess`.`task_gifts` (`user_id`, `gifts`) VALUES ('"+user_id+"', '"+gifts+"');";
+			PreparedStatement stmt = conn.prepareStatement(statement);
+			int queryResult = 2;
+			queryResult = stmt.executeUpdate();
+			if (queryResult == 1) {
+				success = "first";
+				System.out.println("Gifts were inserted");
+			} else{
+				success ="false";
+				System.out.println("There was an error while updating Gifts");
+			}
+			/* Update Overall Points */
+			String points = "10"; String addRemove = "add";
+			updateAccountBalance.updateAccountBalanceEmail(conn, user_id, points, addRemove);
+			profileCompletionHelpers.updateProfileCompletion(user_id, conn);
+		}
+		else{
+			String statement = "UPDATE `keyaccess`.`task_gifts` SET `gifts`='"+gifts+"' WHERE `user_id`='"+user_id+"';";
+			PreparedStatement stmt = conn.prepareStatement(statement);
+			int queryResult = 2;
+			queryResult = stmt.executeUpdate();
+			if (queryResult == 1) {
+				success = "true";
+				System.out.println("Gifts were updated");
+			} else{
+				success ="false";
+				System.out.println("There was an error while inserting Gifts");
+			}
+			
+
+		}
+	}
+
+	catch (SQLException e) {
+		success ="false";
+		e.printStackTrace();
+	}
+	catch (NullPointerException e)
+	{
+		success ="false";
+		e.printStackTrace();
+	}
+
+	return success;
+}
+}
+ 

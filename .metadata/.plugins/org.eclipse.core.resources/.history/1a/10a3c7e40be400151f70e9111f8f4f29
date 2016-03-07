@@ -1,0 +1,12 @@
+package com.macquarie.analytics;
+
+
+import it.grabz.grabzit.GrabzItClient;
+
+import java.io.File;
+
+public class screenCapture {
+ public static void main(String[] args){
+	 GrabzItClient grabzIt = new GrabzItClient("NjFjMzdjNTg4ZDcxNDc4ZDhkNzc4NTMyNDQ3YTEwZTg=", "P0M/Uj8/P3Y/P1o/Pys/P3hBbD8/PzA/Pz96Pz8/Pz8=");
+ }
+}

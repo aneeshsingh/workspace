@@ -36,5 +36,6 @@
 	<classpathentry kind="lib" path="/Users/simonadams/Downloads/analytics/libs/jetty-util-6.1.26.jar"/>
 	<classpathentry kind="lib" path="/Users/simonadams/Downloads/analytics/libs/jsr305-1.3.9.jar"/>
 	<classpathentry kind="lib" path="/Users/simonadams/Downloads/analytics/libs/transaction-api-1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/simonadams/Downloads/java/grabzit.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

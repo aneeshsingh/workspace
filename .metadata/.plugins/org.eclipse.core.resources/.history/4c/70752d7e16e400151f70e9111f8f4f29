@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	<servlet>
+		<servlet-name>Analytics</servlet-name>
+		<servlet-class>com.macquarie.analytics.AnalyticsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Analytics</servlet-name>
+		<url-pattern>/analytics</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+		<servlet>
+		<servlet-name>getAnalyticsServlet</servlet-name>
+		<servlet-class>com.macquarie.analytics.GetAnalyticsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getAnalyticsServlet</servlet-name>
+		<url-pattern>/getAnalyticsServlet</url-pattern>
+	</servlet-mapping>	
+		<servlet>
+		<servlet-name>ResultsDashboard</servlet-name>
+		<jsp-file>/ResultsDashboard.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ResultsDashboard</servlet-name>
+		<url-pattern>/ResultsDashboard/*</url-pattern>
+	</servlet-mapping>
+		<servlet>
+		<servlet-name>add-product</servlet-name>
+		<jsp-file>/Add_Product_Page_1.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>add-product</servlet-name>
+		<url-pattern>/add-product/*</url-pattern>
+	</servlet-mapping>	
+</web-app>
