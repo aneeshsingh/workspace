@@ -106,7 +106,7 @@
 						</ul>
 						<!-- /.nav-second-level --> 
 					</li>
-					<li> <a href="tables.html"><i class="fa fa-table fa-fw"></i> Campaign status</a> </li>
+					<li> <a href="Table_Code.jsp"><i class="fa fa-table fa-fw"></i> Campaign status</a> </li>
 				</ul>
 			</div>
 			<!-- /.sidebar-collapse --> 
@@ -117,7 +117,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Step #3 <small>New campaigns</small></h1>
+					<h1 class="page-header">Step 3 <small>Competitor details</small></h1>
 				</div>
 				<!-- /.col-lg-12 --> 
 			</div>
@@ -127,33 +127,34 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-push-3 col-md-6">
-					<div class="progress">
-						<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"> 50% </div>
+					<div class="alert alert-success hide" role="alert"><%=request.getAttribute("success") %></div>
+<!--					<div class="progress">
+						<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"> 75% </div>
 					</div>
-				</div>
+-->				</div>
 			</div>
 			<!-- /.row -->
 			<div class="row">
 				<div class="col-md-push-3 col-md-6">
-					<form action="AddProductPageThreeServlet" method="post">
-						<div class="form-group">
-							<label for="new_campaign_url_1">New campaign #1</label>
-							<input type="text" class="form-control" name="new_campaign_url_1" id="new_campaign_url_1" placeholder="Campaign URL">
-							<input type="text" class="form-control" name="new_campaign_url_leads_1" id="new_campaign_url_leads_1" placeholder="Target Leads">
-						</div>
-						<div class="form-group">
-							<label for="new_campaign_url_2">New campaign #2</label>
-							<input type="text" class="form-control" name="new_campaign_url_2" id="new_campaign_url_2" placeholder="Campaign URL">
-							<input type="text" class="form-control" name="new_campaign_url_leads_2" id="new_campaign_url_leads_2" placeholder="Target Leads">
-						</div>
-						<div class="form-group">
-							<label for="new_campaign_url_3">New campaign #3</label>
-							<input type="text" class="form-control" name="new_campaign_url_3" id="new_campaign_url_3" placeholder="Campaign URL">
-							<input type="text" class="form-control" name="new_campaign_url_leads_3" id="new_campaign_url_leads_3" placeholder="Target Leads">
-						</div>
-						<input type="hidden" name="product_id" id="prpduct_id" value="<%=request.getParameter("product_id")%>"/>
-						<button type="submit" class="btn btn-primary btn-block text-right">Proceed To Step #4</button>
-					</form>
+					<div class="controls">
+						<form action="AddProductPageThreeServlet" method="post">
+							<div class="add-group col-md-12">
+								<div class="entry form-group">
+									<label for="mkt_spend">Competitor name</label>
+									<input type="text" class="form-control form-group" name="cmp_name" id="cmp_name" placeholder="e.g NAB">
+									<label for="mkt_spend">Competitor URL</label>
+									<input type="text" class="form-control form-group" name="cmp_url" id="cmp_url" placeholder="e.g. http://www.nab.com.au/sites/personal/home-loans/nab-velocity-frequent-flyer-points-offer">
+									<p class="text-right"><small>Add / Remove</small>
+										<button class="btn btn-success btn-add btn-circle" type="button"> <span class="glyphicon glyphicon-plus"></span> </button>
+									</p>
+								</div>
+							</div>
+							<input type="hidden" name="cmp_name-all" id="cmp_name-all" value="" />
+							<input type="hidden" name="cmp_url-all" id="cmp_url-all" value="" />
+							<input type="hidden" name="product_id" id="product_id" value="<%=request.getParameter('product_id')%>"/>
+							<button type="submit" class="btn btn-primary btn-block text-right" onClick="concatFields('cmp_name');concatFields('cmp_url');">Next step</button>
+						</form>
+					</div>
 				</div>
 			</div>
 			<!-- /.row --> 
@@ -179,6 +180,7 @@
 <script src="js/morris-data.js"></script> 
 
 <!-- Custom Theme JavaScript --> 
-<script src="dist/js/sb-admin-2.js"></script>
+<script src="dist/js/sb-admin-2.js"></script> 
+<script src="dist/js/custom-func.js"></script>
 </body>
 </html>
