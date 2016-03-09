@@ -19,11 +19,7 @@
 
 
 	<%
-		String user_id = "";
-		String emailAddress = "";
-		String mobile_no = "";
-		String first_name = "";
-		String profile_picture = "";
+	
 
 		HashMap overallResultMap = new HashMap();
 		try {

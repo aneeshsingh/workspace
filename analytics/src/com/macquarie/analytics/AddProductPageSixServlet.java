@@ -25,21 +25,19 @@ public class AddProductPageSixServlet extends HttpServlet{
 		response.setContentType("text/html");  
 		PrintWriter out = response.getWriter();  
 		HttpSession session = request.getSession(false);
-		String product_name = (String) request.getParameter("product_name");  
-		String primary_url = (String) request.getParameter("primary_url");  
-		String previous_url = (String) request.getParameter("previous_url");
-		String market_spend = (String) request.getParameter("market_spend");
-		
-		
+		String product_id = (String) request.getParameter("product_id");  
 		
 		String success="false";
 
 		try {
-			success = AddProductPageSix.insertProductDetailsOne(product_name, primary_url, previous_url, market_spend);
+			success = AddProductPageSix.insertProductDetailsOne(product_id);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		System.out.println("success"+success);

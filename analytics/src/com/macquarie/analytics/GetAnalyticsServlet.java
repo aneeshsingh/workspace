@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 public class GetAnalyticsServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
@@ -31,7 +32,6 @@ public class GetAnalyticsServlet extends HttpServlet{
 		String action = (String) request.getParameter("action");
 		String name = (String) request.getParameter("name");
 		
-		action = "";
 		
 		System.out.println("startDate"+startDate);
 		System.out.println("endDate"+endDate);

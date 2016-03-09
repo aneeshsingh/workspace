@@ -22,7 +22,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 public class AddProductPageTwo {
-	public static String insertProductDetailsOne(String product_id, String previous_campaign_url_1,String  previous_campaign_url_2,String previous_campaign_url_3,String previous_campaign_url_leads_1, String previous_campaign_url_leads_2, String previous_campaign_url_leads_3) throws ClassNotFoundException, UnsupportedEncodingException {		
+	public static String insertProductDetailsOne(String product_id,String Marketing_Spend,String Marketing_Type,String Marketing_Target,String Start_Date,String End_Date) throws ClassNotFoundException, UnsupportedEncodingException {		
 		
 	String success = product_id;
 
@@ -33,10 +33,9 @@ public class AddProductPageTwo {
 	try {
 		/* Check if this is first time upload */
 		
-			
 		
 		String statement = 
-				"INSERT INTO `analytics`.`Product_Details_2` (`Product_ID`, `Previous_Campaign_URL`, `Previous_Campaign_Leads`) VALUES ('"+product_id+"', '"+previous_campaign_url_1+"', '"+previous_campaign_url_leads_1+"'); ";
+				"INSERT INTO `analytics`.`Product_Details_2` (`Product_ID`, `Marketing_Spend`, `Marketing_Type`, `Target`, `Start_Date`, `End_Date`) VALUES ('"+product_id+"', '"+Marketing_Spend+"', '"+Marketing_Type+"', '"+Marketing_Target+"', '"+Start_Date+"', '"+End_Date+"'); ";
 		PreparedStatement stmt = conn.prepareStatement(statement);
 			int queryResult = 2;
 			queryResult = stmt.executeUpdate();
@@ -48,32 +47,6 @@ public class AddProductPageTwo {
 				System.out.println("There was an error while inserting product_details_2");
 			}
 	
-			String statement_2 = 
-					"INSERT INTO `analytics`.`Product_Details_2` (`Product_ID`, `Previous_Campaign_URL`, `Previous_Campaign_Leads`) VALUES ('"+product_id+"', '"+previous_campaign_url_2+"', '"+previous_campaign_url_leads_2+"'); ";
-			PreparedStatement stmt_2 = conn.prepareStatement(statement_2);
-				int queryResult_2 = 2;
-				queryResult_2 = stmt_2.executeUpdate();
-				if (queryResult_2 == 1) {
-					
-					System.out.println("Product_Details_2 were inserted");
-				} else{
-					success ="false";
-					System.out.println("There was an error while inserting product_details_2");
-				}
-				
-				
-				String statement_3 = 
-						"INSERT INTO `analytics`.`Product_Details_2` (`Product_ID`, `Previous_Campaign_URL`, `Previous_Campaign_Leads`) VALUES ('"+product_id+"', '"+previous_campaign_url_3+"', '"+previous_campaign_url_leads_3+"');";
-				PreparedStatement stmt_3 = conn.prepareStatement(statement_3);
-					int queryResult_3 = 2;
-					queryResult_3 = stmt.executeUpdate();
-					if (queryResult_3 == 1) {
-						
-						System.out.println("Product_Details_2 were inserted");
-					} else{
-						success ="false";
-						System.out.println("There was an error while inserting product_details_2");
-					}
 			
 
 	}

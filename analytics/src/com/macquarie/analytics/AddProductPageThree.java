@@ -21,9 +21,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 public class AddProductPageThree {
-	public static String insertProductDetailsOne(String product_id, String new_campaign_url_1, 
-			String new_campaign_url_2, String new_campaign_url_3, String new_campaign_url_leads_1, 
-			String new_campaign_url_leads_2, String new_campaign_url_leads_3) throws ClassNotFoundException, UnsupportedEncodingException {		
+	public static String insertProductDetailsOne(String product_id,HashMap competitors_name_urls) throws ClassNotFoundException, UnsupportedEncodingException {		
 		
 	String success = product_id;
 
@@ -35,12 +33,21 @@ public class AddProductPageThree {
 		/* Check if this is first time upload */
 		
 			
-		
+		 Iterator it = competitors_name_urls.entrySet().iterator();
+		    while (it.hasNext()) {
+		        Map.Entry pair = (Map.Entry)it.next();
+		        
+		        String competitors_name = pair.getKey().toString();
+		        String competitors_url = pair.getValue().toString();
 	
-		
-
+				String screenshot_file_name_desktop = competitors_name+"_"+product_id+"_"+"desktop";
+				String screenshot_file_name_tablet = competitors_name+"_"+product_id+"_"+"tablet";
+				String screenshot_file_name_mobile = competitors_name+"_"+product_id+"_"+"mobile";
+				
+				
 			String statement = 
-					"INSERT INTO `analytics`.`Product_Details_3` (`Product_ID`, `New_Campaign_URL`, `Target_Leads`) VALUES ('"+product_id+"', '"+new_campaign_url_1+"', '"+new_campaign_url_leads_1+"'); ";
+					"INSERT INTO `analytics`.`Product_Details_3` (`ID`, `Product_ID`, `Competitor_Name`, `Competitor_URL`, `Competitor_Screen_Shot_name_desktop`, `Competitor_Screen_Shot_name_mobile`, `Competitor_Screen_Shot_name_tablet`) "
+					+ "VALUES('"+product_id+"', '"+competitors_name+"', '"+competitors_url+"', '"+screenshot_file_name_desktop+"', '"+screenshot_file_name_tablet+"', '"+screenshot_file_name_mobile+"'); ";
 			PreparedStatement stmt = conn.prepareStatement(statement);
 				int queryResult = 2;
 				queryResult = stmt.executeUpdate();
@@ -49,37 +56,9 @@ public class AddProductPageThree {
 					System.out.println("Product_Details_3 were inserted");
 				} else{
 					success ="false";
-					System.out.println("There was an error while inserting product_details_2");
+					System.out.println("There was an error while inserting product_details_3");
 				}
-		
-				String statement_2 = 
-						"INSERT INTO `analytics`.`Product_Details_3` (`Product_ID`, `New_Campaign_URL`, `Target_Leads`) VALUES ('"+product_id+"', '"+new_campaign_url_2+"', '"+new_campaign_url_leads_2+"');";
-				PreparedStatement stmt_2 = conn.prepareStatement(statement_2);
-					int queryResult_2 = 2;
-					queryResult_2 = stmt_2.executeUpdate();
-					if (queryResult_2 == 1) {
-						
-						System.out.println("Product_Details_3 were inserted");
-					} else{
-						success ="false";
-						System.out.println("There was an error while inserting product_details_2");
-					}
-					
-					
-					String statement_3 = 
-							"INSERT INTO `analytics`.`Product_Details_3` (`Product_ID`, `New_Campaign_URL`, `Target_Leads`) VALUES ('"+product_id+"', '"+new_campaign_url_3+"', '"+new_campaign_url_leads_3+"');";
-					PreparedStatement stmt_3 = conn.prepareStatement(statement_3);
-						int queryResult_3 = 2;
-						queryResult_3 = stmt.executeUpdate();
-						if (queryResult_3 == 1) {
-							
-							System.out.println("Product_Details_3 were inserted");
-						} else{
-							success ="false";
-							System.out.println("There was an error while inserting product_details_2");
-						}
-				
-			
+		    }
 			
 	}
 

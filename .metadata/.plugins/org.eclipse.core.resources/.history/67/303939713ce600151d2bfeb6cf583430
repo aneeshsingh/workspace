@@ -1,0 +1,26 @@
+package com.macquarie.analytics;
+
+import javax.json.JsonBuilder;
+
+import com.google.appengine.repackaged.com.google.api.client.json.Json;
+import com.google.appengine.repackaged.com.google.gson.JsonObject;
+
+public class getDashboard {
+
+	JsonObject jsonObject3 =
+		    Json.createObjectBuilder()
+		        .add("name", "Ersin")
+		        .add("surname", "Çetinkaya")
+		        .add("age", 25)
+		        .add("address",
+		              Json.createObjectBuilder()
+		                  .add("city", "Bursa")
+		                  .add("country", "Türkiye")
+		                  .add("zipCode", "33444"))
+		        .add("phones",
+		                      Json.createArrayBuilder()
+		                          .add("234234242")
+		                          .add("345345354"))
+		        .build();
+	
+}

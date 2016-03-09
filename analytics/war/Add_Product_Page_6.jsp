@@ -148,6 +148,7 @@
 							<label></label>
 							<!-- <input type="file" name="file_mobile" id="file_mobile" /> -->
 					</div>
+
 						<input type="hidden" name="product_id" id="product_id" value="<%=request.getAttribute("product_id")%>"/>
 					<button type="submit" class="btn btn-primary btn-block text-right">Complete</button>
 				</form>

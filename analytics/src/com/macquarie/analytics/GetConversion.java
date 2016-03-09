@@ -36,11 +36,71 @@ public class GetConversion {
 			        "ga:pageviews,ga:uniqueEvents") // Metrics.
 			        .setDimensions("ga:pagePath,ga:eventAction")
 			        .setSort("-ga:pagePath")
-			        .setFilters("ga:pagePath=="+url+", ga:eventAction=="+action+"")
+			        .setFilters("ga:pagePath=="+url+";ga:eventAction=="+action+"")
 			        .setMaxResults(25)
 			        .execute();
 			  
 		  }
 		  	  
 	  }
+	  
+	  static GaData getPageViews(Analytics analytics, String tableId, String startDate, String endDate, String url) throws IOException {
+		    
+			  return analytics.data().ga().get(tableId, // Table Id.
+			    		startDate, // Start date.
+			    		endDate, // End date.
+			        "ga:pageviews") // Metrics.
+			        .setDimensions("ga:pagePath")
+			        .setSort("-ga:pagePath")
+			        .setFilters("ga:pagePath=="+url+"")
+			        .setMaxResults(25)
+			        .execute();
+			  
+		  	  
+	  }
+	  
+	  
+	  static GaData getButtonClicks(Analytics analytics, String tableId, String startDate, String endDate, String url, String action) throws IOException {
+		    
+	
+			  return analytics.data().ga().get(tableId, // Table Id.
+			    		startDate, // Start date.
+			    		endDate, // End date.
+			        "ga:pageviews,ga:uniqueEvents") // Metrics.
+			        .setDimensions("ga:pagePath,ga:eventAction")
+			        .setSort("-ga:pagePath")
+			        .setFilters("ga:pagePath=="+url+";ga:eventAction=="+action+"")
+			        .setMaxResults(25)
+			        .execute();
+		  	  
+	  }
+	  
+	  static float getConversion(Analytics analytics, String tableId, String startDate, String endDate, String url, String action) throws IOException {
+		    
+			String getButtonClicks = getButtonClicks(analytics, tableId, startDate, endDate, url, action).getRows().get(0).get(3);
+			
+			String getPageViews = getPageViews(analytics, tableId, startDate, endDate, url).getRows().get(0).get(1);
+			
+			System.out.println("getButtonClicks:"+getButtonClicks);
+			System.out.println("getPageViews:"+getPageViews);
+			
+			
+			int clicks = Integer.parseInt(getButtonClicks);
+			
+			System.out.println("clicks:"+clicks);
+			
+			int views= Integer.parseInt(getPageViews);
+			
+			System.out.println("views:"+views);
+			
+			float conv = (float)(clicks*100)/views;
+			
+			System.out.println("conv:"+conv);
+			
+			return conv;
+
+	  	  
+  }
+	  
+	   
 }

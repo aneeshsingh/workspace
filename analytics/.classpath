@@ -37,5 +37,11 @@
 	<classpathentry kind="lib" path="/Users/simonadams/Downloads/analytics/libs/jsr305-1.3.9.jar"/>
 	<classpathentry kind="lib" path="/Users/simonadams/Downloads/analytics/libs/transaction-api-1.1.jar"/>
 	<classpathentry kind="lib" path="/Users/simonadams/Downloads/java/grabzit.jar"/>
+	<classpathentry kind="lib" path="/Users/simonadams/Downloads/json-lib.jar"/>
+	<classpathentry kind="lib" path="/Users/simonadams/Downloads/JSON/java-json.jar"/>
+	<classpathentry kind="lib" path="/Users/simonadams/Downloads/JSON/json-lib.jar"/>
+	<classpathentry kind="lib" path="/Users/simonadams/Downloads/JSON/json.jar"/>
+	<classpathentry kind="lib" path="/Users/simonadams/Downloads/JSON/org.json.jar"/>
+	<classpathentry kind="lib" path="/Users/simonadams/Downloads/javax.json-1.0.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

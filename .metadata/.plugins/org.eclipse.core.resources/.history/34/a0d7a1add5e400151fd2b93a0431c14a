@@ -1,0 +1,108 @@
+package com.macquarie.analytics;
+
+
+import it.grabz.grabzit.GrabzItClient;
+import it.grabz.grabzit.enums.BrowserType;
+import it.grabz.grabzit.enums.ImageFormat;
+
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.HashMap;
+
+public class fetchScreenShots {
+	
+	public static void createScreenshots(String product_id){
+		
+		HashMap screenshot_data = new HashMap();
+		
+		Connection conn = CreateConnection.createConnection();
+		ResultSet rs = conn.createStatement().executeQuery("SELECT Competitor_URL, Competitor_Screen_Shot_name_desktop, Competitor_Screen_Shot_name_mobile, Competitor_Screen_Shot_name_tablet FROM analytics.Product_Details_3 where Product_ID='12';");
+		
+		while(rs.next()){
+			
+			String id = rs.getString(1);
+			String first_name = rs.getString(2);
+			String last_name = rs.getString(3);
+			String email = rs.getString(4);
+			String mobile_no = rs.getString(5);
+			String customer_id = rs.getString(6);
+			String unit_number = rs.getString(7);
+			String street_number = rs.getString(8);
+			String street_name = rs.getString(9);
+			String suburb = rs.getString(10);
+			String state = rs.getString(11);
+			String postcode = rs.getString(12);
+			String card_on_file = rs.getString(13);
+			String expiry_month = rs.getString(14);
+			String expiry_year = rs.getString(15);
+			String name_on_the_card = rs.getString(16);
+							
+			screenshot_data.put("url", id);
+			screenshot_data.put("file_name", first_name);
+			screenshot_data.put("last_name", last_name);
+			userData.put("email", email);
+			userData.put("mobile_no", mobile_no);
+			userData.put("unit_number", unit_number);
+			userData.put("street_number", street_number);
+			userData.put("street_name", street_name);
+			userData.put("suburb", suburb);
+			userData.put("state", state);
+			userData.put("postcode", postcode);
+			userData.put("card_on_file", card_on_file);
+			userData.put("expiry_month", expiry_month);
+			userData.put("expiry_year", expiry_year);
+			userData.put("name_on_the_card", name_on_the_card);
+			userData.put("customer_id", customer_id);
+			
+		}
+		
+		
+		
+		SELECT Product_URL, Product_Screen_Shot_name_desktop, Product_Screen_Shot_name_mobile, Product_Screen_Shot_name_tablet FROM analytics.Product_Details_1 where ID = '12'; 
+		
+	}
+	
+	
+ public static void storeScreenShots(String filename_desktop,String filename_tablet,String filename_mobile,String url  ) throws Exception{
+	 GrabzItClient grabzIt = new GrabzItClient("NjFjMzdjNTg4ZDcxNDc4ZDhkNzc4NTMyNDQ3YTEwZTg=", "P0M/Uj8/P3Y/P1o/Pys/P3hBbD8/PzA/Pz96Pz8/Pz8=");
+	 
+	// To take a image screenshot
+	 
+	 String customId = "";
+	 int browserWidth = 375;
+	 int browserHeight = -1;
+	 int outputWidth = -1;
+	 int outputHeight = -1;
+	 ImageFormat format = ImageFormat.JPG;
+	 int delay = 0;
+	 String targetElement = "";
+	 BrowserType requestAs = BrowserType.STANDARDBROWSER;
+	 String customWaterMarkId = "";
+	 
+	 grabzIt.SetImageOptions(url, customId, browserWidth, browserHeight, outputWidth, outputHeight, format, delay, targetElement, requestAs, customWaterMarkId);
+	 
+	 String filepath = "war/images/"+filename_mobile;
+	 grabzIt.SaveTo(filepath);
+	 
+	 browserWidth = 1920;
+	 requestAs = BrowserType.STANDARDBROWSER;
+	 
+	 grabzIt.SetImageOptions(url, customId, browserWidth, browserHeight, outputWidth, outputHeight, format, delay, targetElement, requestAs, customWaterMarkId);
+	 
+	 String filepathDesktop = "war/images/"+filename_desktop;
+	 grabzIt.SaveTo(filepathDesktop);
+	 
+	 
+	 
+	 browserWidth = 768;
+	 requestAs = BrowserType.STANDARDBROWSER;
+	 
+	 grabzIt.SetImageOptions(url, customId, browserWidth, browserHeight, outputWidth, outputHeight, format, delay, targetElement, requestAs, customWaterMarkId);
+	 
+	 String filepathTablet = "war/images/"+filename_tablet;
+	 grabzIt.SaveTo(filepathTablet);
+	 
+ }
+} 

@@ -26,33 +26,16 @@ public class AddProductPageFourServlet extends HttpServlet{
 		PrintWriter out = response.getWriter();  
 		HttpSession session = request.getSession(false);
 		String product_id = (String) request.getParameter("product_id");
-
-		String primary_url = (String) request.getParameter("primary_url");
-		String competitor_primary_url_1 = (String) request.getParameter("competitor_primary_url_1");
-		String competitor_primary_url_2 = (String) request.getParameter("competitor_primary_url_2");  
-		String competitor_primary_url_3 = (String) request.getParameter("competitor_primary_url_3");
-		String competitor_primary_url_4 = (String) request.getParameter("competitor_primary_url_4");
-		String competitor_primary_url_5 = (String) request.getParameter("competitor_primary_url_5");
-		
-		
-		String campaign_URL = (String) request.getParameter("campaign_URL");		
-		String competitor_campaign_url_1 = (String) request.getParameter("competitor_campaign_url_1");
-		String competitor_campaign_url_2 = (String) request.getParameter("competitor_campaign_url_2");
-		String competitor_campaign_url_3 = (String) request.getParameter("competitor_campaign_url_3");
-		String competitor_campaign_url_4 = (String) request.getParameter("competitor_campaign_url_4");
-		String competitor_campaign_url_5 = (String) request.getParameter("competitor_campaign_url_5");
-
-
-
+		String file_desktop = (String) request.getParameter("file_desktop");
+		String file_tablet = (String) request.getParameter("file_tablet");  
+		String file_mobile = (String) request.getParameter("file_mobile");
+		String JIRA = (String) request.getParameter("JIRA");
 
 
 		String success="false";
 
 		try {
-			success = AddProductPageFour.insertProductDetailsOne(product_id, primary_url, campaign_URL,competitor_primary_url_1, 
-					competitor_primary_url_2, competitor_primary_url_3,competitor_primary_url_4, 
-					competitor_primary_url_5, competitor_campaign_url_1, competitor_campaign_url_2, competitor_campaign_url_3,
-					competitor_campaign_url_4,competitor_campaign_url_5);
+			success = AddProductPageFour.insertProductDetailsOne(product_id, file_desktop, file_tablet, file_mobile, JIRA);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,7 +49,7 @@ public class AddProductPageFourServlet extends HttpServlet{
 
 			request.setAttribute("success", "true");
 			request.setAttribute("product_id", success);
-			RequestDispatcher rd=request.getRequestDispatcher("Add_Product_Page_5");  
+			RequestDispatcher rd=request.getRequestDispatcher("Add_Product_Page_6");  
 			rd.forward(request,response); 
 
 		}
@@ -75,7 +58,7 @@ public class AddProductPageFourServlet extends HttpServlet{
 		else{
 			System.out.print("No results found");  
 			request.setAttribute("success", "false");
-			RequestDispatcher rd=request.getRequestDispatcher("Add_Product_Page_5");  
+			RequestDispatcher rd=request.getRequestDispatcher("Add_Product_Page_6");  
 			rd.include(request,response); 
 		}
 

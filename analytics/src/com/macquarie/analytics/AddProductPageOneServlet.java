@@ -25,17 +25,18 @@ public class AddProductPageOneServlet extends HttpServlet{
 		response.setContentType("text/html");  
 		PrintWriter out = response.getWriter();  
 		HttpSession session = request.getSession(false);
-		String product_name = (String) request.getParameter("product_name");  
-		String primary_url = (String) request.getParameter("primary_url");  
-		String previous_url = (String) request.getParameter("previous_url");
-		String market_spend = (String) request.getParameter("market_spend");
+		String product_name = (String) request.getParameter("product_name");
+		String category = (String) request.getParameter("category");
+		String product_url = (String) request.getParameter("product_url");  
+		String product_type = (String) request.getParameter("product_type");
+		String product_CTA = (String) request.getParameter("product_CTA");
 		
 		
 		
 		int success=0;
 
 		try {
-			success = AddProductPageOne.insertProductDetailsOne(product_name, primary_url, previous_url, market_spend);
+			success = AddProductPageOne.insertProductDetailsOne(product_name, category, product_url, product_type, product_CTA);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

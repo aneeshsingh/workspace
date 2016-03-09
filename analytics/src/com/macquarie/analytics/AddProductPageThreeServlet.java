@@ -35,15 +35,13 @@ public class AddProductPageThreeServlet extends HttpServlet{
 		String new_campaign_url_leads_3 = (String) request.getParameter("new_campaign_url_leads_3");		
 
 
-
+		HashMap competitors_name_urls = new HashMap();
 
 
 		String success="false";
 
 		try {
-			success = AddProductPageThree.insertProductDetailsOne(product_id, new_campaign_url_1, 
-					new_campaign_url_2, new_campaign_url_3,new_campaign_url_leads_1, 
-					new_campaign_url_leads_2, new_campaign_url_leads_3);
+			success = AddProductPageThree.insertProductDetailsOne(product_id,competitors_name_urls);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

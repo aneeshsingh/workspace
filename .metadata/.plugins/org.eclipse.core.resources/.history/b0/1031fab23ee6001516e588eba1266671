@@ -1,0 +1,29 @@
+package com.macquarie.analytics;
+
+import org.json.JSONObject;
+
+
+public class getDashboard {
+
+	public static void main (String Args[]){
+		
+		JSONObject jsonObject3 =
+			    JSON.createObjectBuilder()
+			        .add("name", "Ersin")
+			        .add("surname", "Çetinkaya")
+			        .add("age", 25)
+			        .add("address",
+			              Json.createObjectBuilder()
+			                  .add("city", "Bursa")
+			                  .add("country", "Türkiye")
+			                  .add("zipCode", "33444"))
+			        .add("phones",
+			                      Json.createArrayBuilder()
+			                          .add("234234242")
+			                          .add("345345354"))
+			        .build();
+
+		
+	}
+		
+}

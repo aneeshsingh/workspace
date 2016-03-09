@@ -1,0 +1,53 @@
+package com.macquarie.analytics;
+
+
+import it.grabz.grabzit.GrabzItClient;
+import it.grabz.grabzit.enums.BrowserType;
+import it.grabz.grabzit.enums.ImageFormat;
+
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+
+public class fetchScreenShots {
+ public static void storeScreenShots(String filename_desktop,String filename_tablet,String filename_mobile,String url  ) throws Exception{
+	 GrabzItClient grabzIt = new GrabzItClient("NjFjMzdjNTg4ZDcxNDc4ZDhkNzc4NTMyNDQ3YTEwZTg=", "P0M/Uj8/P3Y/P1o/Pys/P3hBbD8/PzA/Pz96Pz8/Pz8=");
+	 
+	// To take a image screenshot
+	 
+	 url = "https://www.commbank.com.au/personal/credit-cards.html?pid=45563&sc_psk=10669&sc_crkey=73658353969&gclid=CK_souu_r8sCFYSVvAodDSMBlg&c";
+	 String customId = "";
+	 int browserWidth = 375;
+	 int browserHeight = -1;
+	 int outputWidth = -1;
+	 int outputHeight = -1;
+	 ImageFormat format = ImageFormat.JPG;
+	 int delay = 0;
+	 String targetElement = "";
+	 BrowserType requestAs = BrowserType.STANDARDBROWSER;
+	 String customWaterMarkId = "";
+	 
+	 grabzIt.SetImageOptions(url, customId, browserWidth, browserHeight, outputWidth, outputHeight, format, delay, targetElement, requestAs, customWaterMarkId);
+	 
+	 String filepath = "scw-screenshot-main-mobile.jpg";
+	 grabzIt.SaveTo(filepath);
+	 
+	 browserWidth = 1920;
+	 requestAs = BrowserType.STANDARDBROWSER;
+	 
+	 grabzIt.SetImageOptions(url, customId, browserWidth, browserHeight, outputWidth, outputHeight, format, delay, targetElement, requestAs, customWaterMarkId);
+	 
+	 String filepathDesktop = "scw-screenshot-main-desktop.jpg";
+	 grabzIt.SaveTo(filepathDesktop);
+	 
+	 
+	 
+	 browserWidth = 768;
+	 requestAs = BrowserType.STANDARDBROWSER;
+	 
+	 grabzIt.SetImageOptions(url, customId, browserWidth, browserHeight, outputWidth, outputHeight, format, delay, targetElement, requestAs, customWaterMarkId);
+	 
+	 String filepathTablet = "scw-screenshot-main-tablet.jpg";
+	 grabzIt.SaveTo(filepathTablet);
+	 
+ }
+} 

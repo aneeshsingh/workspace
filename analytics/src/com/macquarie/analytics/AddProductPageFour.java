@@ -21,89 +21,43 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 public class AddProductPageFour {
-	public static String insertProductDetailsOne(String product_id, String primary_url, String campaign_URL, String competitor_primary_url_1, 
-			String competitor_primary_url_2, String competitor_primary_url_3,String competitor_primary_url_4, 
-			String competitor_primary_url_5, String competitor_campaign_url_1, String competitor_campaign_url_2, String competitor_campaign_url_3,
-			String competitor_campaign_url_4,String competitor_campaign_url_5) throws ClassNotFoundException, UnsupportedEncodingException {		
-		
-	String success = product_id;
+	public static String insertProductDetailsOne(String product_id,String file_desktop,String file_tablet,String file_mobile, String JIRA) throws ClassNotFoundException, UnsupportedEncodingException {		
 
-	Connection conn = null;
+		String success = product_id;
 
-	conn = CreateConnection.createConnection();
+		Connection conn = null;
 
-	 String[] competitor_primary_urls = new String[5];
-	 
-	 competitor_primary_urls[0] = competitor_primary_url_1;
-	 competitor_primary_urls[1] = competitor_primary_url_2;
-	 competitor_primary_urls[2] = competitor_primary_url_3;
-	 competitor_primary_urls[3] = competitor_primary_url_4;
-	 competitor_primary_urls[4] = competitor_primary_url_5;
-	 
-	 
-	 String[] competitor_campaign_urls = new String[5];
-	 
-	 competitor_campaign_urls[0] = competitor_campaign_url_1;
-	 competitor_campaign_urls[1] = competitor_campaign_url_2;
-	 competitor_campaign_urls[2] = competitor_campaign_url_3;
-	 competitor_campaign_urls[3] = competitor_campaign_url_4;
-	 competitor_campaign_urls[4] = competitor_campaign_url_5;	 
-	 
-	try {		
+		conn = CreateConnection.createConnection();
 
-		
-		for(int i=0;  i< 5; i++){
-			
-			
-		
+
+
+		try {		
+
 			String statement = 
-					"INSERT INTO `analytics`.`Product_Details_4` (`Product_ID`, `Main_URL`, `Competitor_URL`) VALUES ('"+product_id+"', '"+primary_url+"', '"+competitor_primary_urls[i]+"');";
+					"INSERT INTO `analytics`.`Product_Details_5` (`Product_ID`,`Desktop_Design`,`Tablet_Design`,`Mobile_Design`, `JIRA`) VALUES ('"+product_id+"','"+file_desktop+"','"+file_tablet+"','"+file_mobile+"','"+JIRA+"');";
 			PreparedStatement stmt = conn.prepareStatement(statement);
-				int queryResult = 2;
-				queryResult = stmt.executeUpdate();
-				if (queryResult == 1) {
-					
-					System.out.println("Product_Details_4 were inserted");
-				} else{
-					success ="false";
-					System.out.println("There was an error while inserting product_details_2");
-				}
-				
-		}	
-		
-		
-		for(int i=0;  i< 5; i++){
-			
-			
-		
-			String statement = 
-					"INSERT INTO `analytics`.`Product_Details_4` (`Product_ID`, `Main_URL`, `Competitor_URL`) VALUES ('"+product_id+"', '"+campaign_URL+"', '"+competitor_campaign_urls[i]+"');";
-			PreparedStatement stmt = conn.prepareStatement(statement);
-				int queryResult = 2;
-				queryResult = stmt.executeUpdate();
-				if (queryResult == 1) {
-					
-					System.out.println("Product_Details_4 were inserted");
-				} else{
-					success ="false";
-					System.out.println("There was an error while inserting product_details_2");
-				}
-				
-		}	
-			
-	}
+			int queryResult = 2;
+			queryResult = stmt.executeUpdate();
+			if (queryResult == 1) {
 
-	catch (SQLException e) {
-		success ="false";
-		e.printStackTrace();
-	}
-	catch (NullPointerException e)
-	{
-		success ="false";
-		e.printStackTrace();
-	}
+				System.out.println("Product_Details_4 were inserted");
+			} else{
+				success ="false";
+				System.out.println("There was an error while inserting product_details_4");
+			}
 
-	return success;
+		}
+
+		catch (SQLException e) {
+			success ="false";
+			e.printStackTrace();
+		}
+		catch (NullPointerException e)
+		{
+			success ="false";
+			e.printStackTrace();
+		}
+
+		return success;
+	}
 }
-}
- 
