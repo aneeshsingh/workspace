@@ -103,8 +103,6 @@
 							<li> <a href="Add_Product_Page_2.jsp">Page 2</a> </li>
 							<li> <a href="Add_Product_Page_3.jsp">Page 3</a> </li>
 							<li> <a href="Add_Product_Page_4.jsp">Page 4</a> </li>
-							<li> <a href="Add_Product_Page_5.jsp">Page 5</a> </li>
-							<li> <a href="Add_Product_Page_6.jsp">Page 6</a> </li>
 						</ul>
 						<!-- /.nav-second-level --> 
 					</li>
@@ -183,8 +181,7 @@
 								</div>
 							</div>
 						</div>
-						<input type="hidden" name="product_id" id="product_id" value="<%=request.getAttribute("product_id")%>"/>
-						<button type="submit" class="btn btn-primary btn-block text-right">Proceed To Step #3</button>
+						<input type="hidden" name="product_id" id="product_id" value="<%=request.getParameter('product_id')%>"/>
 						<input type="hidden" name="mkt_type-all" id="mkt_type-all" value="" />
 						<button type="submit" class="btn btn-primary btn-block text-right" onClick="concatFields('mkt_type');">Next step</button>
 					</form>
