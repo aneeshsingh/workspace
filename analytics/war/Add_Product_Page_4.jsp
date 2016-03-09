@@ -31,16 +31,6 @@
 
 <!-- Custom Fonts -->
 <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-			<div class="col-md-12">
-			<input type="text" name="primary_url" id="primary_url" placeholder="Primary URL">
-			<input type="text" name="competitor_primary_url_1" id="competitor_primary_url_1" placeholder="Competitor URL #1">
-			<input type="text" name="competitor_primary_url_2" id="competitor_primary_url_2" placeholder="Competitor URL #2">
-			<input type="text" name="competitor_primary_url_3" id="competitor_primary_url_3" placeholder="Competitor URL #3">
-			<input type="text" name="competitor_primary_url_4" id="competitor_primary_url_4" placeholder="Competitor URL #4">
-			<input type="text" name="competitor_primary_url_5" id="competitor_primary_url_5" placeholder="Competitor URL #5">
-			
-			</div>
-		</div>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -50,15 +40,6 @@
     <![endif]-->
 
 </head>
-			<div class="col-md-12">
-			
-			<input type="text" name="campaign_URL" id="campaign_URL" placeholder="Campaign URL">
-			<input type="text" name="competitor_campaign_url_1" id="competitor_campaign_url_1" placeholder="Competitor URL #1">
-			<input type="text" name="competitor_campaign_url_2" id="competitor_campaign_url_2" placeholder="Competitor URL #2">
-			<input type="text" name="competitor_campaign_url_3" id="competitor_campaign_url_3" placeholder="Competitor URL #3">
-			<input type="text" name="competitor_campaign_url_4" id="competitor_campaign_url_4" placeholder="Competitor URL #4">
-			<input type="text" name="competitor_campaign_url_5" id="competitor_campaign_url_5" placeholder="Competitor URL #5">
-						</div>
 
 <body>
 <div id="wrapper"> 
@@ -94,7 +75,7 @@
 					<li class="divider"></li>
 					<li> <a class="text-center" href="#"> <strong>See All Alerts</strong> <i class="fa fa-angle-right"></i> </a> </li>
 				</ul>
-				<!-- /.dropdown-alerts --> 
+				<!-- /.dropdown-alerts -->
 			</li>
 			<!-- /.dropdown -->
 			<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i> </a>
@@ -120,8 +101,6 @@
 							<li> <a href="Add_Product_Page_2.jsp">Page 2</a> </li>
 							<li> <a href="Add_Product_Page_3.jsp">Page 3</a> </li>
 							<li> <a href="Add_Product_Page_4.jsp">Page 4</a> </li>
-							<li> <a href="Add_Product_Page_5.jsp">Page 5</a> </li>
-							<li> <a href="Add_Product_Page_6.jsp">Page 6</a> </li>
 						</ul>
 						<!-- /.nav-second-level --> 
 					</li>
@@ -155,24 +134,6 @@
 			<!-- /.row -->
 			<div class="row">
 				<div class="col-md-push-3 col-md-6">
-				<form action="AddProductPageFourServlet" method="post">
-					<div class="form-group"><label for="competitor_primary_url_1">Primary URLs</label>
-						<input type="text" class="form-control" name="competitor_primary_url_1" id="competitor_primary_url_1" placeholder="Competitor URL #1">
-						<input type="text" class="form-control" name="competitor_primary_url_2" id="competitor_primary_url_2" placeholder="Competitor URL #2">
-						<input type="text" class="form-control" name="competitor_primary_url_3" id="competitor_primary_url_3" placeholder="Competitor URL #3">
-						<input type="text" class="form-control" name="competitor_primary_url_4" id="competitor_primary_url_4" placeholder="Competitor URL #4">
-						<input type="text" class="form-control" name="competitor_primary_url_5" id="competitor_primary_url_5" placeholder="Competitor URL #5">
-					</div>
-					<div class="form-group"><label for="competitor_campaign_url_1">Campaign URLs</label>
-						<input type="text" class="form-control" name="competitor_campaign_url_1" id="competitor_campaign_url_1" placeholder="Competitor URL #1">
-						<input type="text" class="form-control" name="competitor_campaign_url_2" id="competitor_campaign_url_2" placeholder="Competitor URL #2">
-						<input type="text" class="form-control" name="competitor_campaign_url_3" id="competitor_campaign_url_3" placeholder="Competitor URL #3">
-						<input type="text" class="form-control" name="competitor_campaign_url_4" id="competitor_campaign_url_4" placeholder="Competitor URL #4">
-						<input type="text" class="form-control" name="competitor_campaign_url_5" id="competitor_campaign_url_5" placeholder="Competitor URL #5">
-					</div>
-						<input type="hidden" name="product_id" id="product_id" value="<%=request.getAttribute("product_id")%>"/>
-					<button type="submit" class="btn btn-primary btn-block text-right">Proceed To Step #5</button>
-				</form>
 					<form action="AddProductPageFiveServlet" method="post">
 						<div class="form-group col-md-12">
 							<label>Upload desktop design</label>

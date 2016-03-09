@@ -136,25 +136,6 @@
 			<!-- /.row -->
 			<div class="row">
 				<div class="col-md-push-3 col-md-6">
-					<form action="AddProductPageThreeServlet" method="post">
-						<div class="form-group">
-							<label for="new_campaign_url_1">New campaign #1</label>
-							<input type="text" class="form-control" name="new_campaign_url_1" id="new_campaign_url_1" placeholder="Campaign URL">
-							<input type="text" class="form-control" name="new_campaign_url_leads_1" id="new_campaign_url_leads_1" placeholder="Target Leads">
-						</div>
-						<div class="form-group">
-							<label for="new_campaign_url_2">New campaign #2</label>
-							<input type="text" class="form-control" name="new_campaign_url_2" id="new_campaign_url_2" placeholder="Campaign URL">
-							<input type="text" class="form-control" name="new_campaign_url_leads_2" id="new_campaign_url_leads_2" placeholder="Target Leads">
-						</div>
-						<div class="form-group">
-							<label for="new_campaign_url_3">New campaign #3</label>
-							<input type="text" class="form-control" name="new_campaign_url_3" id="new_campaign_url_3" placeholder="Campaign URL">
-							<input type="text" class="form-control" name="new_campaign_url_leads_3" id="new_campaign_url_leads_3" placeholder="Target Leads">
-						</div>
-						<input type="hidden" name="product_id" id="product_id" value="<%=request.getAttribute("product_id")%>"/>
-						<button type="submit" class="btn btn-primary btn-block text-right">Proceed To Step #4</button>
-					</form>
 					<div class="controls">
 						<form action="AddProductPageThreeServlet" method="post">
 							<div class="add-group col-md-12">
