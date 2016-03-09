@@ -101,8 +101,6 @@
 							<li> <a href="Add_Product_Page_2.jsp">Page 2</a> </li>
 							<li> <a href="Add_Product_Page_3.jsp">Page 3</a> </li>
 							<li> <a href="Add_Product_Page_4.jsp">Page 4</a> </li>
-							<li> <a href="Add_Product_Page_5.jsp">Page 5</a> </li>
-							<li> <a href="Add_Product_Page_6.jsp">Page 6</a> </li>
 						</ul>
 						<!-- /.nav-second-level --> 
 					</li>
