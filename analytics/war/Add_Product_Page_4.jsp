@@ -29,10 +29,8 @@
 <!-- Morris Charts CSS -->
 <link href="bower_components/morrisjs/morris.css" rel="stylesheet">
 
-<<<<<<< Updated upstream
 <!-- Custom Fonts -->
 <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-=======
 			<div class="col-md-12">
 			<input type="text" name="primary_url" id="primary_url" placeholder="Primary URL">
 			<input type="text" name="competitor_primary_url_1" id="competitor_primary_url_1" placeholder="Competitor URL #1">
@@ -43,7 +41,6 @@
 			
 			</div>
 		</div>
->>>>>>> Stashed changes
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,9 +49,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<<<<<<< Updated upstream
 </head>
-=======
 			<div class="col-md-12">
 			
 			<input type="text" name="campaign_URL" id="campaign_URL" placeholder="Campaign URL">
@@ -64,7 +59,6 @@
 			<input type="text" name="competitor_campaign_url_4" id="competitor_campaign_url_4" placeholder="Competitor URL #4">
 			<input type="text" name="competitor_campaign_url_5" id="competitor_campaign_url_5" placeholder="Competitor URL #5">
 						</div>
->>>>>>> Stashed changes
 
 <body>
 <div id="wrapper"> 
@@ -131,7 +125,7 @@
 						</ul>
 						<!-- /.nav-second-level --> 
 					</li>
-					<li> <a href="tables.html"><i class="fa fa-table fa-fw"></i> Campaign status</a> </li>
+					<li> <a href="Table_Code.jsp"><i class="fa fa-table fa-fw"></i> Campaign status</a> </li>
 				</ul>
 			</div>
 			<!-- /.sidebar-collapse --> 
@@ -142,7 +136,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Step #4 <small>Competitor URLs</small></h1>
+					<h1 class="page-header">Step 4 <small>Upload screenshots</small></h1>
 				</div>
 				<!-- /.col-lg-12 --> 
 			</div>
@@ -152,10 +146,11 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-push-3 col-md-6">
-					<div class="progress">
-						<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="66.6" aria-valuemin="0" aria-valuemax="100" style="width: 66.6%;"> 66% </div>
+					<div class="alert alert-success hide" role="alert"><%=request.getAttribute("success") %></div>
+<!--					<div class="progress">
+						<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"> 100% </div>
 					</div>
-				</div>
+-->				</div>
 			</div>
 			<!-- /.row -->
 			<div class="row">
@@ -178,13 +173,34 @@
 						<input type="hidden" name="product_id" id="product_id" value="<%=request.getAttribute("product_id")%>"/>
 					<button type="submit" class="btn btn-primary btn-block text-right">Proceed To Step #5</button>
 				</form>
+					<form action="AddProductPageFiveServlet" method="post">
+						<div class="form-group col-md-12">
+							<label>Upload desktop design</label>
+							<input type="file" name="file_desktop" id="file_desktop" />
+						</div>
+						<div class="form-group col-md-12">
+							<label>Upload tablet design</label>
+							<input type="file" name="file_tablet" id="file_tablet" />
+						</div>
+						<div class="form-group col-md-12">
+							<label>Upload mobile design</label>
+							<input type="file" name="file_mobile" id="file_mobile" />
+						</div>
+						<div class="form-group col-md-12">
+							<label>JIRA number</label>
+							<input type="text" class="form-control" name="prd_jira" id="prd_jira" placeholder="e.g. PSP-000" />
+						</div>
+						<input type="hidden" name="product_id" id="product_id" value="<%=request.getParameter('product_id')%>"/>
+						<input type="hidden" name="prd_jira-all" id="prd_jira-all" value=""/>
+						<button type="submit" class="btn btn-primary btn-block text-right">Finish</button>
+					</form>
+				</div>
 			</div>
+			<!-- /.row --> 
 		</div>
-		<!-- /.row --> 
+		<!-- /.container --> 
 	</div>
-	<!-- /.container --> 
-</div>
-<!-- /#page-wrapper -->
+	<!-- /#page-wrapper --> 
 </div>
 <!-- /#wrapper --> 
 
@@ -204,5 +220,6 @@
 
 <!-- Custom Theme JavaScript --> 
 <script src="dist/js/sb-admin-2.js"></script>
+<script src="dist/js/custom-func.js"></script>
 </body>
 </html>

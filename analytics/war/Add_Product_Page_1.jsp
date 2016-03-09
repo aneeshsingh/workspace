@@ -106,7 +106,7 @@
 						</ul>
 						<!-- /.nav-second-level --> 
 					</li>
-					<li> <a href="tables.html"><i class="fa fa-table fa-fw"></i> Campaign status</a> </li>
+					<li> <a href="Table_Code.jsp"><i class="fa fa-table fa-fw"></i> Campaign status</a> </li>
 				</ul>
 			</div>
 			<!-- /.sidebar-collapse --> 
@@ -117,7 +117,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Step #1 <small>Product details</small></h1>
+					<h1 class="page-header">Step 1 <small>Product details</small></h1>
 				</div>
 				<!-- /.col-lg-12 --> 
 			</div>
@@ -127,32 +127,44 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-push-3 col-md-6">
-					<div class="progress">
-						<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="16.6" aria-valuemin="0" aria-valuemax="100" style="width: 16.6%;"> 16% </div>
+<!--					<div class="progress">
+						<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"> 25% </div>
 					</div>
-				</div>
+-->				</div>
 			</div>
 			<!-- /.row -->
 			<div class="row">
 				<div class="col-md-push-3 col-md-6">
 					<form action="AddProductPageOneServlet" method="post">
-						<div class="form-group">
-							<input type="text" class="form-control" name="product_name" id="product_name" placeholder="Product Name">
+						<div class="form-group col-md-12">
+							<label>Category name</label>
+							<select class="form-control" name="cat_name" id="cat_name">
+								<option value="" selected>Please select one</option>
+								<option value="http://www.macquarie.com/au/personal/home-loans">Home loans</option>
+								<option value="http://www.macquarie.com/au/personal/credit-cards">Credit cards</option>
+								<option value="http://www.macquarie.com/au/personal/bank-accounts">Bank accounts</option>
+								<option value="http://www.macquarie.com/au/personal/investments">Investments</option>
+								<option value="http://www.macquarie.com/au/personal/vehicle-loans">Car loans</option>
+								<option value="http://www.macquarie.com/au/personal/financial-advice">Financial advice</option>
+							</select>
 						</div>
-						<div class="form-group">
-							<input type="text" class="form-control" name="primary_url" id="primary_url" placeholder="Primary URL">
+						<div class="form-group col-md-12">
+							<label>Product name</label>
+							<input type="text" class="form-control" name="prd_name" id="prd_name" placeholder="e.g. Basic Home Loan">
 						</div>
-						<div class="form-group">
-							<input type="text" class="form-control" name="previous_url" id="previous_url" placeholder="Previous URL">
+						<div class="form-group col-md-12">
+							<label>Primary URL</label>
+							<input type="text" class="form-control" name="prd_url" id="prd_url" placeholder="e.g. http://www.macquarie.com/au/personal/home-loans/basic">
 						</div>
-						<div class="form-group">
-							<div class="input-group">
-								<div class="input-group-addon">$</div>
-								<input type="text" class="form-control" name="market_spend" id="market_spend" placeholder="Market Spend">
-								<div class="input-group-addon">.00</div>
-							</div>
+						<div class="form-group col-md-12">
+							<label>Product type</label>
+							<input type="text" class="form-control" name="prd_type" id="prd_type" placeholder="e.g. Home loan">
 						</div>
-						<button type="submit" class="btn btn-primary btn-block text-right">Proceed To Step #2</button>
+						<div class="form-group col-md-12">
+							<label>Primary CTA</label>
+							<input type="text" class="form-control" name="prd_cta" id="prd_cta" placeholder="e.g. Apply Now">
+						</div>
+						<button type="submit" class="btn btn-primary btn-block text-right">Next step</button>
 					</form>
 				</div>
 			</div>
@@ -180,5 +192,6 @@
 
 <!-- Custom Theme JavaScript --> 
 <script src="dist/js/sb-admin-2.js"></script>
+<script src="dist/js/custom-func.js"></script>
 </body>
 </html>

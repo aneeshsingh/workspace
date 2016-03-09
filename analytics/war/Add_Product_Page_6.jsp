@@ -106,7 +106,7 @@
 					</ul>
 					<!-- /.nav-second-level --> 
 				</li>
-				<li> <a href="tables.html"><i class="fa fa-table fa-fw"></i> Campaign status</a> </li>
+				<li> <a href="Table_Code.jsp"><i class="fa fa-table fa-fw"></i> Campaign status</a> </li>
 			</ul>
 		</div>
 		<!-- /.sidebar-collapse --> 

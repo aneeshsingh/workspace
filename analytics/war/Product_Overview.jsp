@@ -1,11 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<%@ page import="com.macquarie.analytics.*"%>
-<%@ page import="java.util.HashMap"%>
-<%@ page import="java.util.Iterator"%>
-<%@ page import="java.util.Map"%>
-<%@ page import="java.sql.Connection"%>
-<%@page language="java" session="true"%>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -117,7 +111,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Step #5 <small>Upload screenshots</small></h1>
+					<h1 class="page-header"> Full product table <small>All page details</small></h1>
 				</div>
 				<!-- /.col-lg-12 --> 
 			</div>
@@ -126,31 +120,68 @@
 		<!-- /.container -->
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-push-3 col-md-6">
-					<div class="progress">
-						<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="83" aria-valuemin="0" aria-valuemax="100" style="width: 83.3%;"> 83% </div>
+				<div class="col-md-6">
+					<div class="table-responsive">
+						<table class="table table-striped table-hover">
+							<tr>
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="table-responsive">
+						<table class="table table-striped table-hover">
+							<tr>
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+						</table>
 					</div>
 				</div>
 			</div>
-			<!-- /.row -->
+			<!-- /.row --> 
 			<div class="row">
-				<div class="col-md-push-3 col-md-6">
-					<form action="AddProductPageFiveServlet" method="post">
-						<div class="form-group">
-							<label>Upload Desktop Design</label>
-							<input type="file" name="file_desktop" id="file_desktop" />
-						</div>
-						<div class="form-group">
-							<label>Upload Tablet Design</label>
-							<input type="file" name="file_tablet" id="file_tablet" />
-						</div>
-						<div class="form-group">
-							<label>Upload Mobile Design</label>
-							<input type="file" name="file_mobile" id="file_mobile" />
-						</div>
-						<input type="hidden" name="product_id" id="product_id" value="<%=request.getAttribute("product_id")%>"/>
-						<button type="submit" class="btn btn-primary btn-block text-right">Proceed To Step #6</button>
-					</form>
+				<div class="col-md-12">
+					<div class="table-responsive">
+						<table class="table table-striped table-hover">
+							<tr>
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+						</table>
+					</div>
 				</div>
 			</div>
 			<!-- /.row --> 
@@ -177,5 +208,6 @@
 
 <!-- Custom Theme JavaScript --> 
 <script src="dist/js/sb-admin-2.js"></script>
+<script src="dist/js/custom-func.js"></script>
 </body>
 </html>

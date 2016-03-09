@@ -36,8 +36,4 @@ public class getDashboard {
         writer.close();
         System.out.println(stringWriter.getBuffer().toString());
     }
-    
-    
-    
-    
 }

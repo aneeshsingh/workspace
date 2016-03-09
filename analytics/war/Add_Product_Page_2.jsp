@@ -25,6 +25,8 @@
 
 <!-- Custom CSS -->
 <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+<link href="dist/css/jquery-ui.min.css" rel="stylesheet" />
+<link href="dist/css/jquery-ui.theme.min.css" rel="stylesheet" />
 
 <!-- Morris Charts CSS -->
 <link href="bower_components/morrisjs/morris.css" rel="stylesheet">
@@ -106,7 +108,7 @@
 						</ul>
 						<!-- /.nav-second-level --> 
 					</li>
-					<li> <a href="tables.html"><i class="fa fa-table fa-fw"></i> Campaign status</a> </li>
+					<li> <a href="Table_Code.jsp"><i class="fa fa-table fa-fw"></i> Campaign status</a> </li>
 				</ul>
 			</div>
 			<!-- /.sidebar-collapse --> 
@@ -117,7 +119,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Step #2 <small>Previous campaigns</small></h1>
+					<h1 class="page-header">Step 2 <small>Marketing details</small></h1>
 				</div>
 				<!-- /.col-lg-12 --> 
 			</div>
@@ -127,41 +129,73 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-push-3 col-md-6">
-					<div class="progress">
-						<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="33.3" aria-valuemin="0" aria-valuemax="100" style="width: 33.3%;"> 33% </div>
+					<div class="alert alert-success hide" role="alert"><%=request.getAttribute("success") %></div>
+<!--					<div class="progress">
+						<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"> 50% </div>
 					</div>
-				</div>
+-->				</div>
 			</div>
 			<!-- /.row -->
 			<div class="row">
 				<div class="col-md-push-3 col-md-6">
-					<div><%=request.getAttribute("success") %></div>
 					<form action="AddProductPageTwoServlet" method="post">
-						<div class="form-group">
-							<label for="previous_campaign_url_1">Previous campaign #1</label>
-							<input type="text" class="form-control" name="previous_campaign_url_1" id="previous_campaign_url_1" placeholder="Campaign URL">
-							<input type="text" class="form-control" name="previous_campaign_url_leads_1" id="previous_campaign_url_leads_1" placeholder="Campaign Leads">
+						<div class="form-group col-md-6">
+							<label for="mkt_spend">Marketing spend</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" name="mkt_spend" id="mkt_spend" placeholder="e.g. 120000" />
+								<div class="input-group-addon">.00</div>
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="previous_campaign_url_2">Previous campaign #2</label>
-							<input type="text" class="form-control" name="previous_campaign_url_2" id="previous_campaign_url_2" placeholder="Campaign URL">
-							<input type="text" class="form-control" name="previous_campaign_url_leads_2" id="previous_campaign_url_leads_2" placeholder="Campaign Leads">
+						<div class="form-group col-md-12">
+							<label for="mkt_type">Category name</label>
+							<select multiple class="form-control" name="mkt_type" type="text">
+								<option value="advertising">Advertising</option>
+								<option value="affiliate">Affiliate</option>
+								<option value="alwayson">Always on</option>
+								<option value="display">Display</option>
+								<option value="email">EDM</option>
+								<option value="paidsearch">Paid search</option>
+								<option value="sem">SEM</option>
+								<option value="na">Not applicable</option>
+							</select>
+							<p class="help-block text-right">(Hold <kbd>Ctrl</kbd> to select multiple)</p>
 						</div>
-						<div class="form-group">
-							<label for="previous_campaign_url_3">Previous campaign #3</label>
-							<input type="text" class="form-control" name="previous_campaign_url_3" id="previous_campaign_url_3" placeholder="Campaign URL">
-							<input type="text" class="form-control" name="previous_campaign_url_leads_3" id="previous_campaign_url_leads_3" placeholder="Campaign Leads">
+						<div class="form-group col-md-12">
+							<label>Target Leads</label>
+							<input type="number" class="form-control" name="mkt_target" id="mkt_target" placeholder="e.g. 132" />
+						</div>
+						<div class="form-group col-md-6">
+							<label for="mkt_time-start">Campaign start</label>
+							<div class="controls">
+								<div class="input-group">
+									<input  type="text" class="date-picker form-control" name="mkt_time-start" id="mkt_time-start" placeholder="DD/MM/YYYY" />
+									<label for="mkt_time-start" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span> </label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label name="mkt_time-end">Campaign end</label>
+							<div class="controls">
+								<div class="input-group">
+									<input  type="text" class="date-picker form-control" name="mkt_time-end" id="mkt_time-end" placeholder="DD/MM/YYYY" />
+									<label for="mkt_time-end" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span> </label>
+								</div>
+							</div>
 						</div>
 						<input type="hidden" name="product_id" id="product_id" value="<%=request.getAttribute("product_id")%>"/>
 						<button type="submit" class="btn btn-primary btn-block text-right">Proceed To Step #3</button>
+						<input type="hidden" name="mkt_type-all" id="mkt_type-all" value="" />
+						<button type="submit" class="btn btn-primary btn-block text-right" onClick="concatFields('mkt_type');">Next step</button>
 					</form>
 				</div>
 			</div>
-			<!-- /.row --> 
 		</div>
-		<!-- /.container --> 
+		<!-- /.row --> 
 	</div>
-	<!-- /#page-wrapper --> 
+	<!-- /.container --> 
+</div>
+<!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper --> 
 
@@ -177,9 +211,10 @@
 <!-- Morris Charts JavaScript --> 
 <script src="bower_components/raphael/raphael-min.js"></script> 
 <script src="bower_components/morrisjs/morris.min.js"></script> 
-<script src="js/morris-data.js"></script> 
 
 <!-- Custom Theme JavaScript --> 
-<script src="dist/js/sb-admin-2.js"></script>
+<script src="dist/js/sb-admin-2.js"></script> 
+<script src="dist/js/custom-func.js"></script> 
+<script src="dist/js/jquery-ui.min.js"></script>
 </body>
 </html>
