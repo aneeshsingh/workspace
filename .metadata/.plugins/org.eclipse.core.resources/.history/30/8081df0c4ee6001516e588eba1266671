@@ -1,0 +1,66 @@
+package com.macquarie.analytics;
+
+import org.json.JSONObject;
+
+import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonWriter;
+
+
+public class addToDashboard {
+
+	public static String getAllProductID() throws ClassNotFoundException, UnsupportedEncodingException, SQLException{
+		
+		Connection conn = CreateConnection.createConnection();
+		ResultSet rs = conn.createStatement().executeQuery("SELECT Product_ID, Previous_Conv, New_Conv, Conv_Diff, Status, Product_Name, Clicks FROM analytics.Main_Dashboard");
+		String JSON_Object_String = "";
+		
+		INSERT INTO `analytics`.`Main_Dashboard` (`Product_ID`, `Previous_Conv`, `New_Conv`, `Conv_Diff`, `Status`, `Product_Name`, `Clicks`) VALUES ('12', '4.3', '5.2', '.7', 'Active', 'Home Loans', '2121');
+
+		
+
+		try {
+			/* Check if this is first time upload */
+			
+			
+			String statement = 
+					"INSERT INTO `analytics`.`Product_Details_2` (`Product_ID`, `Marketing_Spend`, `Marketing_Type`, `Target`, `Start_Date`, `End_Date`) VALUES ('"+product_id+"', '"+Marketing_Spend+"', '"+Marketing_Type+"', '"+Marketing_Target+"', '"+Start_Date+"', '"+End_Date+"'); ";
+			PreparedStatement stmt = conn.prepareStatement(statement);
+				int queryResult = 2;
+				queryResult = stmt.executeUpdate();
+				if (queryResult == 1) {
+					
+					System.out.println("Product_Details_2 were inserted");
+				} else{
+					success ="false";
+					System.out.println("There was an error while inserting product_details_2");
+				}
+		
+				
+
+		}
+
+		catch (SQLException e) {
+			success ="false";
+			e.printStackTrace();
+		}
+		catch (NullPointerException e)
+		{
+			success ="false";
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+
+}
+

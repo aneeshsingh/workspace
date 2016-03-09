@@ -27,16 +27,18 @@ public class AddProductPageThreeServlet extends HttpServlet{
 		HttpSession session = request.getSession(false);
 		String product_id = (String) request.getParameter("product_id");
 
-		String new_campaign_url_1 = (String) request.getParameter("new_campaign_url_1");
-		String new_campaign_url_leads_1 = (String) request.getParameter("new_campaign_url_leads_1");  
-		String new_campaign_url_2 = (String) request.getParameter("new_campaign_url_2");
-		String new_campaign_url_leads_2 = (String) request.getParameter("new_campaign_url_leads_2");
-		String new_campaign_url_3 = (String) request.getParameter("new_campaign_url_3");
-		String new_campaign_url_leads_3 = (String) request.getParameter("new_campaign_url_leads_3");		
-
-
+		String cmp_name = (String) request.getParameter("cmp_name");
+		String cmp_url = (String) request.getParameter("cmp_url");  
+		
+		 String[] cmp_name_array = cmp_name.split(",");
+		 String[] cmp_url_array = cmp_url.split(",");
+		 
 		HashMap competitors_name_urls = new HashMap();
 
+		for(int i=0;i<cmp_name_array.length; i++)
+		{
+			competitors_name_urls.put(cmp_name_array[i], cmp_url_array[i]);
+		}
 
 		String success="false";
 

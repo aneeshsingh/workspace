@@ -29,7 +29,7 @@ public class AddProductPageFourServlet extends HttpServlet{
 		String file_desktop = (String) request.getParameter("file_desktop");
 		String file_tablet = (String) request.getParameter("file_tablet");  
 		String file_mobile = (String) request.getParameter("file_mobile");
-		String JIRA = (String) request.getParameter("JIRA");
+		String JIRA = (String) request.getParameter("prd_jira");
 
 
 		String success="false";

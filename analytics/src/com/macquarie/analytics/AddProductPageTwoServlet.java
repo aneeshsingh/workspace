@@ -27,11 +27,11 @@ public class AddProductPageTwoServlet extends HttpServlet{
 		HttpSession session = request.getSession(false);
 		String product_id = (String) request.getParameter("product_id");
 		
-		String Marketing_Spend = (String) request.getParameter("Marketing_Spend");
-		String Marketing_Type = (String) request.getParameter("Marketing_Type");  
-		String Marketing_Target = (String) request.getParameter("Marketing_Target");
-		String Start_Date = (String) request.getParameter("Start_Date");
-		String End_Date = (String) request.getParameter("End_Date");
+		String Marketing_Spend = (String) request.getParameter("mkt_spend");
+		String Marketing_Type = (String) request.getParameter("mkt_type");  
+		String Marketing_Target = (String) request.getParameter("mkt_target");
+		String Start_Date = (String) request.getParameter("mkt_time-start");
+		String End_Date = (String) request.getParameter("mkt_time-end");
 		
 		
 		

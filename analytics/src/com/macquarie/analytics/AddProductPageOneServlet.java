@@ -25,11 +25,11 @@ public class AddProductPageOneServlet extends HttpServlet{
 		response.setContentType("text/html");  
 		PrintWriter out = response.getWriter();  
 		HttpSession session = request.getSession(false);
-		String product_name = (String) request.getParameter("product_name");
-		String category = (String) request.getParameter("category");
-		String product_url = (String) request.getParameter("product_url");  
-		String product_type = (String) request.getParameter("product_type");
-		String product_CTA = (String) request.getParameter("product_CTA");
+		String product_name = (String) request.getParameter("prd_name");
+		String category = (String) request.getParameter("cat_name");
+		String product_url = (String) request.getParameter("prd_url");  
+		String product_type = (String) request.getParameter("prd_type");
+		String product_CTA = (String) request.getParameter("prd_cta");
 		
 		
 		

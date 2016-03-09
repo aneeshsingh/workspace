@@ -1,0 +1,70 @@
+package com.macquarie.analytics;
+
+import org.json.JSONObject;
+
+import java.io.StringWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonWriter;
+
+
+public class getDashboard {
+
+	public static void getAllProductID(){
+		
+		Connection conn = CreateConnection.createConnection();
+		ResultSet rs_competitor = conn.createStatement().executeQuery("SELECT Competitor_URL, Competitor_Screen_Shot_name_desktop, Competitor_Screen_Shot_name_mobile, Competitor_Screen_Shot_name_tablet FROM analytics.Product_Details_3 where Product_ID='"+product_id+"';");
+
+
+		while(rs_competitor.next()){
+
+			String url = rs_competitor.getString(1);
+			String Competitor_Screen_Shot_name_desktop = rs_competitor.getString(2);
+			String Competitor_Screen_Shot_name_mobile = rs_competitor.getString(3);
+			String Competitor_Screen_Shot_name_tablet = rs_competitor.getString(4);
+
+
+			try {
+				storeScreenShots(Competitor_Screen_Shot_name_desktop, Competitor_Screen_Shot_name_tablet, Competitor_Screen_Shot_name_mobile, url);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+	}
+
+	public static void main(String[] args) {
+		JsonObject personObject = Json.createObjectBuilder()
+				.add("name", "Jack")
+				.add("age", 13)
+				.add("isMarried", false)
+				.add("address", 
+						Json.createObjectBuilder().add("street", "Main Street")
+						.add("city", "New York")
+						.add("zipCode", "11111")
+						.build()
+						)
+						.add("phoneNumber", 
+								Json.createArrayBuilder().add("00-000-0000")
+								.add("11-111-1111")
+								.add("11-111-1112")
+								.build()
+								)
+								.build();
+
+		StringWriter stringWriter = new StringWriter();
+		JsonWriter writer = Json.createWriter(stringWriter);
+		writer.writeObject(personObject);
+		writer.close();
+		System.out.println(stringWriter.getBuffer().toString());
+	}
+
+
+
+
+}
