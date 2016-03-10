@@ -20,7 +20,7 @@ public class fetchScreenShots {
 		Connection conn = CreateConnection.createConnection();
 		ResultSet rs_competitor = conn.createStatement().executeQuery("SELECT Competitor_URL, Competitor_Screen_Shot_name_desktop, Competitor_Screen_Shot_name_mobile, Competitor_Screen_Shot_name_tablet FROM analytics.Product_Details_3 where Product_ID='"+product_id+"';");
 		
-		
+		System.out.println("SELECT Competitor_URL, Competitor_Screen_Shot_name_desktop, Competitor_Screen_Shot_name_mobile, Competitor_Screen_Shot_name_tablet FROM analytics.Product_Details_3 where Product_ID='"+product_id+"';");
 		while(rs_competitor.next()){
 			
 			String url = rs_competitor.getString(1);
@@ -40,10 +40,11 @@ public class fetchScreenShots {
 		
 		ResultSet rs_product = conn.createStatement().executeQuery("SELECT Product_URL, Product_Screen_Shot_name_desktop, Product_Screen_Shot_name_mobile, Product_Screen_Shot_name_tablet FROM analytics.Product_Details_1 where ID = '"+product_id+"';");
 
-		
+		System.out.println("SELECT Product_URL, Product_Screen_Shot_name_desktop, Product_Screen_Shot_name_mobile, Product_Screen_Shot_name_tablet FROM analytics.Product_Details_1 where ID = '"+product_id+"';");
+
 		while(rs_product.next()){
 			
-			String url = rs_competitor.getString(1);
+			String url = rs_product.getString(1);
 			String Product_Screen_Shot_name_desktop = rs_product.getString(2);
 			String Product_Screen_Shot_name_mobile = rs_product.getString(3);
 			String Product_Screen_Shot_name_tablet = rs_product.getString(4);
@@ -68,7 +69,7 @@ public class fetchScreenShots {
 	 
 	// To take a image screenshot
 	 
-	 String customId = "";
+	 String customId = filename_mobile;
 	 int browserWidth = 375;
 	 int browserHeight = -1;
 	 int outputWidth = -1;
@@ -81,26 +82,24 @@ public class fetchScreenShots {
 	 
 	 grabzIt.SetImageOptions(url, customId, browserWidth, browserHeight, outputWidth, outputHeight, format, delay, targetElement, requestAs, customWaterMarkId);
 	 
-	 String filepath = "war/images/"+filename_mobile;
-	 grabzIt.SaveTo(filepath);
+	 grabzIt.Save("http://purelyfit.com.au/php/handler.php?filename=scw-screenshot-main-mobile"); 
 	 
+	 customId = filename_desktop;
 	 browserWidth = 1920;
 	 requestAs = BrowserType.STANDARDBROWSER;
 	 
 	 grabzIt.SetImageOptions(url, customId, browserWidth, browserHeight, outputWidth, outputHeight, format, delay, targetElement, requestAs, customWaterMarkId);
 	 
-	 String filepathDesktop = "war/images/"+filename_desktop;
-	 grabzIt.SaveTo(filepathDesktop);
+	 grabzIt.Save("http://purelyfit.com.au/php/handler.php?filename=scw-screenshot-main-mobile"); 
 	 
 	 
-	 
+	 customId = filename_tablet;
 	 browserWidth = 768;
 	 requestAs = BrowserType.STANDARDBROWSER;
 	 
 	 grabzIt.SetImageOptions(url, customId, browserWidth, browserHeight, outputWidth, outputHeight, format, delay, targetElement, requestAs, customWaterMarkId);
 	 
-	 String filepathTablet = "war/images/"+filename_tablet;
-	 grabzIt.SaveTo(filepathTablet);
+	 grabzIt.Save("http://purelyfit.com.au/php/handler.php?filename=scw-screenshot-main-mobile"); 
 	 
  }
 } 

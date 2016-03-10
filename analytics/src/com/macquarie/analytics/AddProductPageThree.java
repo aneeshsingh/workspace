@@ -46,8 +46,8 @@ public class AddProductPageThree {
 				
 				
 			String statement = 
-					"INSERT INTO `analytics`.`Product_Details_3` (`ID`, `Product_ID`, `Competitor_Name`, `Competitor_URL`, `Competitor_Screen_Shot_name_desktop`, `Competitor_Screen_Shot_name_mobile`, `Competitor_Screen_Shot_name_tablet`) "
-					+ "VALUES('"+product_id+"', '"+competitors_name+"', '"+competitors_url+"', '"+screenshot_file_name_desktop+"', '"+screenshot_file_name_tablet+"', '"+screenshot_file_name_mobile+"'); ";
+					"INSERT INTO `analytics`.`Product_Details_3` (`Product_ID`,`Competitor_Name`, `Competitor_URL`, `Competitor_Screen_Shot_name_desktop`, `Competitor_Screen_Shot_name_mobile`, `Competitor_Screen_Shot_name_tablet`) "
+					+ "VALUES('"+product_id+"', '"+competitors_name+"', '"+competitors_url+"', '"+screenshot_file_name_desktop+"', '"+screenshot_file_name_mobile+"', '"+screenshot_file_name_tablet+"'); ";
 			PreparedStatement stmt = conn.prepareStatement(statement);
 				int queryResult = 2;
 				queryResult = stmt.executeUpdate();

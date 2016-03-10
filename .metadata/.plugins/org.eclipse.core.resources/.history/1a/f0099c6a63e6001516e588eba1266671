@@ -1,0 +1,30 @@
+package com.macquarie.analytics;
+
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+public class dateFormatter {
+	
+	public static void main(String Args[]){
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+		System.out.println(dateFormat.format(cal.getTime()));
+
+		cal.add(Calendar.DAY_OF_MONTH, -7);
+
+		Date todate1 = (Date) cal.getTime();    
+		String fromdate = dateFormat.format(todate1);
+		
+		System.out.println("7 Days before:-"+fromdate);
+		
+		cal.add(Calendar.DAY_OF_MONTH, -14);
+
+		 todate1 = (Date) cal.getTime();    
+		 fromdate = dateFormat.format(todate1);
+		System.out.println("14 Days before:-"+fromdate);
+		
+	}
+	
+}

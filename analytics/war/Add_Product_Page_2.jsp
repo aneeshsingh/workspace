@@ -181,7 +181,7 @@
 								</div>
 							</div>
 						</div>
-						<input type="hidden" name="product_id" id="product_id" value="<%=request.getParameter('product_id')%>"/>
+						<input type="hidden" name="product_id" id="product_id" value="<%=request.getAttribute("product_id")%>"/>
 						<input type="hidden" name="mkt_type-all" id="mkt_type-all" value="" />
 						<button type="submit" class="btn btn-primary btn-block text-right" onClick="concatFields('mkt_type');">Next step</button>
 					</form>

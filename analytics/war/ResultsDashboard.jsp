@@ -20,16 +20,12 @@
 
 	<%
 	
-
-		HashMap overallResultMap = new HashMap();
-		try {
-			overallResultMap = (HashMap) request.getAttribute("resultMap");
-			System.out.println("overallResultMap -->" + overallResultMap);
-
-		} catch (Exception e) {
-
-		}
-	%>
+	String product_id  = (String)request.getAttribute("product_id");
+	
+	String imageJSON = getImagePaths.getImagesForID(product_Id);
+	
+	
+		%>
 
 
 	<div class="container">
@@ -37,54 +33,7 @@
 
 		<div class="row">
 
-			<div class="col-md-12"><%=overallResultMap.get("gaDataConv")%></div>
-		</div>
-
-		<div class="row">
-
-			<div class="col-md-12"><%=overallResultMap.get("gaDataScreenSizes")%></div>
-
-		</div>
-
-
-
-
-
-		<div class="row">
-
-			<div class="col-md-12"><%=overallResultMap.get("gaDataDevices")%></div>
-
-		</div>
-
-		<div class="row">
-
-			<div class="col-md-12"><%=overallResultMap.get("gaDataTime")%></div>
-
-		</div>
-
-
-
-
-		<div class="row">
-
-			<div class="col-md-12"><%=overallResultMap.get("gaReturningNew")%></div>
-		</div>
-
-		<div class="row">
-
-			<div class="col-md-12"><%=overallResultMap.get("gaGeneralData")%></div>
-
-		</div>
-
-
-
-
-		<div class="row">
-
-			<div class="col-md-12"><%=overallResultMap.get("gaReferralData")%></div>
-
-			<div class="col-md-12"></div>
-
+			<div class="col-md-12"><%=imageJSON %></div>
 		</div>
 
 	</div>

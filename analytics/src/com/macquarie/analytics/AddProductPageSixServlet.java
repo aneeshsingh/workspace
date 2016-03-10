@@ -30,12 +30,15 @@ public class AddProductPageSixServlet extends HttpServlet{
 		String success="false";
 
 		try {
-			success = AddProductPageSix.insertProductDetailsOne(product_id);
+			success = addToDashboard.AddProduct(product_id);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -46,7 +49,7 @@ public class AddProductPageSixServlet extends HttpServlet{
 		if(success.equalsIgnoreCase("true")){			
 			
 				request.setAttribute("success", "true");
-				RequestDispatcher rd=request.getRequestDispatcher("OverallDashboard");  
+				RequestDispatcher rd=request.getRequestDispatcher("MainDashboard");  
 				rd.forward(request,response); 
 
 		}
@@ -55,7 +58,7 @@ public class AddProductPageSixServlet extends HttpServlet{
 		else{
 			System.out.print("No results found");  
 			request.setAttribute("success", "false");
-			RequestDispatcher rd=request.getRequestDispatcher("OverallDashboard");  
+			RequestDispatcher rd=request.getRequestDispatcher("MainDashboard");  
 			rd.include(request,response); 
 		}
 

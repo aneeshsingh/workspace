@@ -105,7 +105,7 @@ public class HelloAnalytics {
 	return allGAData;
   }
 
-  private static Analytics initializeAnalytics() throws Exception {
+  static Analytics initializeAnalytics() throws Exception {
     // Initializes an authorized analytics service object.
 
     // Construct a GoogleCredential object with the service account email
@@ -125,7 +125,7 @@ public class HelloAnalytics {
   }
 
 
-  private static String getFirstProfileId(Analytics analytics) throws IOException {
+  static String getFirstProfileId(Analytics analytics) throws IOException {
     // Get the first view (profile) ID for the authorized user.
     String profileId = null;
 
@@ -161,7 +161,7 @@ public class HelloAnalytics {
     return profileId;
   }
 
-  private static GaData getResults(Analytics analytics, String profileId) throws IOException {
+  static GaData getResults(Analytics analytics, String profileId) throws IOException {
     // Query the Core Reporting API for the number of sessions
     // in the past seven days.
     return analytics.data().ga()
@@ -290,7 +290,7 @@ public class HelloAnalytics {
    *
    * @param gaData the data returned from the API.
    */
-  private static void printDataTable(GaData gaData) {
+  static void printDataTable(GaData gaData) {
     if (gaData.getTotalResults() > 0) {
       System.out.println("Data Table:");
 

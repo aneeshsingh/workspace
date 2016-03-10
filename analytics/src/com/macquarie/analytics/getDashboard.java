@@ -20,12 +20,12 @@ public class getDashboard {
 		
 		Connection conn = CreateConnection.createConnection();
 		ResultSet rs = conn.createStatement().executeQuery("SELECT Product_ID, Previous_Conv, New_Conv, Conv_Diff, Status, Product_Name, Clicks FROM analytics.Main_Dashboard");
-		String JSON_Object_String = "";
+		String  JSON_Object_String= "";
 		
-		
+		int i = 0;
 		try {
 			while(rs.next()){
-
+				
 				String Product_ID = rs.getString(1);
 				String Previous_Conv = rs.getString(2);
 				String New_Conv = rs.getString(3);
@@ -34,7 +34,12 @@ public class getDashboard {
 				String Product_Name = rs.getString(6);
 				String Clicks = rs.getString(7);
 				
-				JSON_Object_String = JSON_Object_String + createJSONObject(Product_ID, Previous_Conv, New_Conv, Conv_Diff, Status, Product_Name, Clicks);
+				if(i==0){
+					JSON_Object_String = createJSONObject(Product_ID, Previous_Conv, New_Conv, Conv_Diff, Status, Product_Name, Clicks).toString();
+				}else{
+					JSON_Object_String = JSON_Object_String+","+createJSONObject(Product_ID, Previous_Conv, New_Conv, Conv_Diff, Status, Product_Name, Clicks);
+				}
+				i++;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -42,8 +47,11 @@ public class getDashboard {
 		}
 		
 		
-		JSON_Object_String = createMainJSON(JSON_Object_String).toString();
-		JSON_Object_String = JSON_Object_String.replaceAll("\\\\", "");
+		JSON_Object_String = "["+JSON_Object_String+"]";
+		System.out.println("JSON_Object_String-->"+JSON_Object_String);
+		
+		//JSON_Object_String = createMainJSON(JSON_Object_String).toString();
+		//JSON_Object_String = JSON_Object_String.replaceAll("\\\\", "");
 
 		
 		return JSON_Object_String;

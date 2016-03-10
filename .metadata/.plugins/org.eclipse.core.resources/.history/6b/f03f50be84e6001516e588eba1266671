@@ -1,0 +1,87 @@
+package com.macquarie.analytics;
+
+import org.json.JSONObject;
+
+import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonWriter;
+
+
+public class getImagePaths {
+
+	public static String getImagesForID(String product_Id) throws ClassNotFoundException, UnsupportedEncodingException, SQLException{
+		
+		
+		String Competitor_Screen_Shot_name_desktop = "";
+		String Competitor_Screen_Shot_name_mobile = "";
+		String Competitor_Screen_Shot_name_tablet = "";
+		String Product_Screen_Shot_name_desktop = "";
+		String Product_Screen_Shot_name_mobile = "";
+		String Product_Screen_Shot_name_tablet = "";		
+
+		SELECT Image_Name FROM analytics.Image_Store where Custom_ID='Common Wealth_31_desktop';
+		
+		SELECT Product_Screen_Shot_name_desktop,Product_Screen_Shot_name_mobile,Product_Screen_Shot_name_tablet FROM analytics.Product_Details_1 where ID='31';
+		
+		Connection conn = CreateConnection.createConnection();
+		ResultSet rs = conn.createStatement().executeQuery("SELECT Competitor_Screen_Shot_name_desktop,Competitor_Screen_Shot_name_mobile,Competitor_Screen_Shot_name_tablet FROM analytics.Product_Details_3 where Product_ID='"+product_Id+"';");
+		
+		try {
+			while(rs.next()){
+				
+				 Competitor_Screen_Shot_name_desktop = rs.getString(1);
+				 Competitor_Screen_Shot_name_mobile = rs.getString(2);
+				 Competitor_Screen_Shot_name_tablet = rs.getString(3);
+
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ResultSet rs = conn.createStatement().executeQuery("SELECT Competitor_Screen_Shot_name_desktop,Competitor_Screen_Shot_name_mobile,Competitor_Screen_Shot_name_tablet FROM analytics.Product_Details_3 where Product_ID='"+product_Id+"';");
+		
+		try {
+			while(rs.next()){
+				
+				 Competitor_Screen_Shot_name_desktop = rs.getString(1);
+				 Competitor_Screen_Shot_name_mobile = rs.getString(2);
+				 Competitor_Screen_Shot_name_tablet = rs.getString(3);
+
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	}
+	
+	public static JsonObject createImageJSON(String Competitor_Screen_Shot_name_desktop, String Competitor_Screen_Shot_name_mobile, String Competitor_Screen_Shot_name_tablet, String Product_Screen_Shot_name_desktop, String Product_Screen_Shot_name_tablet, String Product_Screen_Shot_name_mobile ){
+		
+		JsonObject personObject = Json.createObjectBuilder()
+				.add("Competitor_Screen_Shot_name_desktop", Competitor_Screen_Shot_name_desktop)
+				.add("Competitor_Screen_Shot_name_mobile", Competitor_Screen_Shot_name_mobile)
+				.add("Competitor_Screen_Shot_name_tablet", Competitor_Screen_Shot_name_tablet)
+				.add("Product_Screen_Shot_name_desktop", Product_Screen_Shot_name_desktop)
+				.add("Product_Screen_Shot_name_tablet", Product_Screen_Shot_name_tablet)
+				.add("Product_Screen_Shot_name_mobile", Product_Screen_Shot_name_mobile)
+				.build();
+
+		return personObject;
+	}
+	
+	
+
+}
+
+
+

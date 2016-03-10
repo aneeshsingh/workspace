@@ -1,0 +1,41 @@
+package com.macquarie.analytics;
+
+import java.io.IOException;
+import java.util.Properties;
+
+/**
+ *
+ * @author Administrator
+ */
+public final class Config {
+
+    private static final Properties properties = new Properties();
+
+    static {
+        try {
+            ClassLoader loader = Thread.currentThread().getContextClassLoader();
+            properties.load(loader.getResourceAsStream("config.properties"));
+        } catch (IOException e) {
+            throw new ExceptionInInitializerError(e);
+        }
+    }
+
+    private static String getSetting(String key) {
+        return properties.getProperty(key);
+    }
+
+    public static String getApplicationKey()
+    {
+        return "NjFjMzdjNTg4ZDcxNDc4ZDhkNzc4NTMyNDQ3YTEwZTg=";
+    }
+
+    public static String getApplicationSecret()
+    {
+        return "P0M/Uj8/P3Y/P1o/Pys/P3hBbD8/PzA/Pz96Pz8/Pz8=";
+    }
+
+    public static String getHandlerUrl()
+    {
+        return "http://1-dot-analytics-1233.appspot.com/grabzit/handler";
+    }
+}

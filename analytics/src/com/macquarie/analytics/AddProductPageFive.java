@@ -34,7 +34,7 @@ public class AddProductPageFive {
 		try {		
 
 			String statement = 
-					"INSERT INTO `analytics`.`Product_Details_5` (`Product_ID`,`Desktop_Design`,`Tablet_Design`,`Mobile_Design`) VALUES ('"+product_id+"','"+file_desktop+"','"+file_tablet+"','"+file_mobile+"');";
+					"INSERT INTO `analytics`.`Product_Details_4` (`Product_ID`,`Desktop_Design`,`Tablet_Design`,`Mobile_Design`) VALUES ('"+product_id+"','"+file_desktop+"','"+file_tablet+"','"+file_mobile+"');";
 			PreparedStatement stmt = conn.prepareStatement(statement);
 			int queryResult = 2;
 			queryResult = stmt.executeUpdate();

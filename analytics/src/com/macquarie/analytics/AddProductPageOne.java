@@ -40,8 +40,8 @@ public class AddProductPageOne {
 		String screenshot_file_name_tablet = product_name+"_"+product_id+"_"+"tablet";
 		String screenshot_file_name_mobile = product_name+"_"+product_id+"_"+"mobile";
 		 
-		String statement = "INSERT INTO `analytics`.`Product_Details_1` (`ID`, `Product_ID`, `Product_Name`, `Product_URL`, `Product_Type`, `Product_CTA`, `Category`, `Product_Screen_Shot_name_desktop`, `Product_Screen_Shot_name_mobile`, `Product_Screen_Shot_name_tablet`) VALUES "
-				+ "('"+product_name+"', '"+product_url+"', '"+product_type+"', '"+product_CTA+"', '"+category+"','"+screenshot_file_name_desktop+"','"+screenshot_file_name_tablet+"','"+screenshot_file_name_mobile+"');";
+		String statement = "INSERT INTO `analytics`.`Product_Details_1` (`Product_Name`, `Product_URL`, `Product_Type`, `Product_CTA`, `Category`, `Product_Screen_Shot_name_desktop`, `Product_Screen_Shot_name_mobile`, `Product_Screen_Shot_name_tablet`) VALUES "
+				+ "('"+product_name+"', '"+product_url+"', '"+product_type+"', '"+product_CTA+"', '"+category+"','"+screenshot_file_name_desktop+"','"+screenshot_file_name_mobile+"','"+screenshot_file_name_tablet+"');";
 		PreparedStatement stmt = conn.prepareStatement(statement, Statement.RETURN_GENERATED_KEYS);
 			
 			stmt.executeUpdate();

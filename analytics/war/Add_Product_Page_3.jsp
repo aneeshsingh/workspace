@@ -149,7 +149,7 @@
 							</div>
 							<input type="hidden" name="cmp_name-all" id="cmp_name-all" value="" />
 							<input type="hidden" name="cmp_url-all" id="cmp_url-all" value="" />
-							<input type="hidden" name="product_id" id="product_id" value="<%=request.getParameter("product_id")%>"/>
+							<input type="hidden" name="product_id" id="product_id" value="<%=request.getAttribute("product_id")%>"/>
 							<button type="submit" class="btn btn-primary btn-block text-right" onClick="concatFields('cmp_name');concatFields('cmp_url');">Next step</button>
 						</form>
 					</div>

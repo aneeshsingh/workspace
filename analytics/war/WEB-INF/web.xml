@@ -32,6 +32,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/ResultsDashboard/*</url-pattern>
 	</servlet-mapping>
 		<servlet>
+		<servlet-name>MainDashboard</servlet-name>
+		<jsp-file>/MainDashboard.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MainDashboard</servlet-name>
+		<url-pattern>/MainDashboard/*</url-pattern>
+	</servlet-mapping>	
+		<servlet>
 		<servlet-name>add-product</servlet-name>
 		<jsp-file>/Add_Product_Page_1.jsp</jsp-file>
 	</servlet>
@@ -86,7 +94,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>AddProductPageSixServlet</servlet-name>
 		<url-pattern>/AddProductPageSixServlet</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>			
 		<servlet>
 		<servlet-name>Add_Product_Page_2</servlet-name>
 		<jsp-file>/Add_Product_Page_2.jsp</jsp-file>

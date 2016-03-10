@@ -16,7 +16,7 @@ public class screenCapture {
 	 
 	 
 	 String url = "https://www.commbank.com.au/personal/credit-cards.html?pid=45563&sc_psk=10669&sc_crkey=73658353969&gclid=CK_souu_r8sCFYSVvAodDSMBlg&c";
-	 String customId = "";
+	 String customId = "scw-screenshot-main-mobile.jpg";
 	 int browserWidth = 375;
 	 int browserHeight = -1;
 	 int outputWidth = -1;
@@ -30,25 +30,27 @@ public class screenCapture {
 	 grabzIt.SetImageOptions(url, customId, browserWidth, browserHeight, outputWidth, outputHeight, format, delay, targetElement, requestAs, customWaterMarkId);
 	 
 	 String filepath = "war/images/scw-screenshot-main-mobile.jpg";
-	 grabzIt.SaveTo(filepath);
+	 grabzIt.Save("http://purelyfit.com.au/php/handler.php?filename=scw-screenshot-main-mobile"); 
+//	 grabzIt.SaveTo(filepath);
 	 
+	 customId = "scw-screenshot-main-desktop.jpg";
 	 browserWidth = 1920;
 	 requestAs = BrowserType.STANDARDBROWSER;
 	 
 	 grabzIt.SetImageOptions(url, customId, browserWidth, browserHeight, outputWidth, outputHeight, format, delay, targetElement, requestAs, customWaterMarkId);
 	 
 	 String filepathDesktop = "war/images/scw-screenshot-main-desktop.jpg";
-	 grabzIt.SaveTo(filepathDesktop);
+	 grabzIt.Save("http://purelyfit.com.au/php/handler.php"); 
 	 
 	 
-	 
+	 customId = "scw-screenshot-main-tablet.jpg";
 	 browserWidth = 768;
 	 requestAs = BrowserType.STANDARDBROWSER;
 	 
 	 grabzIt.SetImageOptions(url, customId, browserWidth, browserHeight, outputWidth, outputHeight, format, delay, targetElement, requestAs, customWaterMarkId);
 	 
 	 String filepathTablet = "war/images/scw-screenshot-main-tablet.jpg";
-	 grabzIt.SaveTo(filepathTablet);
+	 grabzIt.Save("http://purelyfit.com.au/php/handler.php"); 
 	 
  }
 }
