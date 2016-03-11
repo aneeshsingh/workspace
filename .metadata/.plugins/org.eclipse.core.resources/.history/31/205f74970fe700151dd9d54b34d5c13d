@@ -1,0 +1,56 @@
+package com.macquarie.analytics;
+
+import org.json.JSONObject;
+
+import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonWriter;
+
+
+public class getGAData {
+
+	public static String getGAData(String product_Id) throws ClassNotFoundException, UnsupportedEncodingException, SQLException{
+		
+		String completeGAData = "";
+		
+		
+		return completeGAData;
+	}
+	
+	public static JsonObject createImageJSON(String Competitor_Screen_Shot_name_desktop, String Competitor_Screen_Shot_name_mobile, String Competitor_Screen_Shot_name_tablet, String Product_Screen_Shot_name_desktop, String Product_Screen_Shot_name_tablet, String Product_Screen_Shot_name_mobile ){
+		
+		Competitor_Screen_Shot_name_desktop = "http://purelyfit.com.au/php/results/"+Competitor_Screen_Shot_name_desktop;
+		Competitor_Screen_Shot_name_mobile = "http://purelyfit.com.au/php/results/"+Competitor_Screen_Shot_name_mobile;
+		Competitor_Screen_Shot_name_tablet = "http://purelyfit.com.au/php/results/"+Competitor_Screen_Shot_name_tablet;
+		Product_Screen_Shot_name_desktop = "http://purelyfit.com.au/php/results/"+Product_Screen_Shot_name_desktop;
+		Product_Screen_Shot_name_tablet = "http://purelyfit.com.au/php/results/"+Product_Screen_Shot_name_tablet;
+		Product_Screen_Shot_name_mobile = "http://purelyfit.com.au/php/results/"+Product_Screen_Shot_name_mobile;
+		
+		
+		JsonObject personObject = Json.createObjectBuilder()
+				.add("Competitor_Screen_Shot_name_desktop", Competitor_Screen_Shot_name_desktop)
+				.add("Competitor_Screen_Shot_name_mobile", Competitor_Screen_Shot_name_mobile)
+				.add("Competitor_Screen_Shot_name_tablet", Competitor_Screen_Shot_name_tablet)
+				.add("Product_Screen_Shot_name_desktop", Product_Screen_Shot_name_desktop)
+				.add("Product_Screen_Shot_name_tablet", Product_Screen_Shot_name_tablet)
+				.add("Product_Screen_Shot_name_mobile", Product_Screen_Shot_name_mobile)
+				.build();
+
+		return personObject;
+	}
+	
+	
+	
+	
+
+}
+
+
+

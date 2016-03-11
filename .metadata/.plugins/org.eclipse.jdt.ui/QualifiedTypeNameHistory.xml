@@ -16,7 +16,6 @@
 <fullyQualifiedTypeName name="java.sql.Connection"/>
 <fullyQualifiedTypeName name="com.macquarie.analytics.CreateConnection"/>
 <fullyQualifiedTypeName name="java.sql.ResultSet"/>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="com.macquarie.analytics.fetchScreenShots"/>
 <fullyQualifiedTypeName name="com.google.api.services.analytics.model.GaData.Query"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
@@ -25,4 +24,9 @@
 <fullyQualifiedTypeName name="com.google.api.client.json.Json"/>
 <fullyQualifiedTypeName name="com.google.appengine.repackaged.com.google.gson.JsonObject"/>
 <fullyQualifiedTypeName name="com.google.appengine.repackaged.com.google.api.client.json.Json"/>
+<fullyQualifiedTypeName name="com.macquarie.analytics.HelloAnalytics"/>
+<fullyQualifiedTypeName name="java.util.Collection"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="com.google.api.services.analytics.model.GaData"/>
 </qualifiedTypeNameHistroy>

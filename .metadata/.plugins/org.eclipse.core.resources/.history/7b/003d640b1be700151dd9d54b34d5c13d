@@ -1,0 +1,211 @@
+package com.macquarie.analytics;
+
+import org.json.JSONObject;
+
+import com.google.api.services.analytics.Analytics;
+import com.google.api.services.analytics.model.GaData;
+import com.google.api.services.analytics.model.GaData.ColumnHeaders;
+
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonWriter;
+
+
+public class getGAData {
+
+	public static String getGAData(String product_Id) throws Exception{
+		
+		String completeGAData = "";
+		Connection conn = CreateConnection.createConnection();		
+
+	      Analytics analytics = HelloAnalytics.initializeAnalytics();
+
+	      String profile = HelloAnalytics.getFirstProfileId(analytics);
+	      System.out.println("First Profile Id: "+ profile);
+	      String table_id = "ga:"+profile;	      	      	      
+	     
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			Calendar cal = Calendar.getInstance();
+			System.out.println(dateFormat.format(cal.getTime()));
+
+			cal.add(Calendar.DAY_OF_MONTH, -1);
+			String endDate = dateFormat.format(cal.getTime());
+			
+			cal.add(Calendar.DAY_OF_MONTH, -7);
+			String startDate = dateFormat.format(cal.getTime());
+			
+			String Product_URL = "";
+			String Product_Name = "";
+			String Product_CTA = "";
+
+			ResultSet rs = conn.createStatement().executeQuery("SELECT Product_URL,Product_Name, Product_CTA FROM analytics.Product_Details_1 where ID='"+product_Id+"';");
+
+
+			while(rs.next()){
+
+				Product_URL = rs.getString(1);
+				Product_Name = rs.getString(2);
+				Product_CTA = rs.getString(3);
+			}
+
+			Product_URL = Product_URL.replaceAll("http://www.macquarie.com", "");	
+			
+	      GaData gaDataScreenSizes = GetScreenSizes.executeScreenSizesDataQuery(analytics, table_id, startDate, endDate, Product_URL);
+	      
+	      HashMap temp = printJSONDataTable(gaDataScreenSizes);
+	      
+	      String keyName = temp.get("header").toString();
+	      String dataName = temp.get("datarows").toString();
+	      
+	      String gaDataScreenSizesString = createGAObjectJSON(keyName, dataName).toString();
+	 
+	      
+	      
+	      GaData gaDataDevices = GetDevices.executeDevicesDataQuery(analytics, table_id, startDate, endDate, Product_URL);
+	      
+	       temp = printJSONDataTable(gaDataDevices);
+	      
+	       keyName = temp.get("header").toString();
+	       dataName = temp.get("datarows").toString();
+	      
+	       String gaDataDevicesString = createGAObjectJSON(keyName, dataName).toString();
+	      
+	      
+	      GaData gaDataTime = GetTime.executeTimeDataQuery(analytics, table_id, startDate, endDate, Product_URL);
+
+	       temp = printJSONDataTable(gaDataTime);
+		      
+	       keyName = temp.get("header").toString();
+	       dataName = temp.get("datarows").toString();
+	      	      
+	      String gaDataTimeString =  createGAObjectJSON(keyName, dataName).toString(); 
+	 
+	      GaData gaReturningNew = GetReturningNew.executeReturnNewDataQuery(analytics, table_id, startDate, endDate, Product_URL);
+	      
+	       temp = printJSONDataTable(gaDataTime);
+		      
+	       keyName = temp.get("header").toString();
+	       dataName = temp.get("datarows").toString();
+	       
+	      String gaReturningNewString =   createGAObjectJSON(keyName, dataName).toString(); 
+	            
+	      GaData gaGeneralData = GetGeneralData.executeGeneralDataDataQuery(analytics, table_id, startDate, endDate, Product_URL);
+	      
+	       temp = printJSONDataTable(gaDataTime);
+		      
+	       keyName = temp.get("header").toString();
+	       dataName = temp.get("datarows").toString();
+	       
+	      String gaGeneralDataString =  createGAObjectJSON(keyName, dataName).toString(); 
+	      
+	      GaData gaReferralData = GetReferralData.executeReferralDataQuery(analytics, table_id, startDate, endDate, Product_URL);
+	      
+	       temp = printJSONDataTable(gaDataTime);
+		      
+	       keyName = temp.get("header").toString();
+	       dataName = temp.get("datarows").toString();
+	       
+	      String gaReferralDataString =   createGAObjectJSON(keyName, dataName).toString(); 
+	      
+	      String allGAData = createGAJSON(gaDataScreenSizesString, gaDataDevicesString, gaDataTimeString, gaReturningNewString, gaGeneralDataString, gaReferralDataString).toString();
+	      
+	      
+	      allGAData = allGAData.replaceAll("\\\\", "");
+	      
+	      System.out.println("allGAData -->"+allGAData);
+
+	      return allGAData;
+	
+		
+		
+	}
+	
+	public static JsonObject createGAJSON(String gaDataScreenSizesString, String gaDataDevicesString, String gaDataTimeString, String gaReturningNewString, String gaGeneralDataString, String gaReferralDataString ){
+				
+		JsonObject personObject = Json.createObjectBuilder()
+				.add("GetScreenSizes", gaDataScreenSizesString)
+				.add("GetDevices", gaDataDevicesString)
+				.add("GetTime", gaDataTimeString)
+				.add("GetReturningNew", gaReturningNewString)
+				.add("GetGeneralData", gaGeneralDataString)
+				.add("GetReferralData", gaReferralDataString)
+				.build();
+
+		return personObject;
+	}
+	
+	
+	public static JsonObject createGAObjectJSON(String keyName, String dataName ){
+		
+		JsonObject personObject = Json.createObjectBuilder()
+				.add("header", keyName)
+				.add("data", dataName)
+				.build();
+
+		return personObject;
+	}
+	
+	
+	private static HashMap printJSONDataTable(GaData gaData) {
+
+		Collection headers = new ArrayList();
+		Collection datarows = new ArrayList();	
+		if (gaData.getTotalResults() > 0) {
+			
+			// Print the column names.
+			for (ColumnHeaders header : gaData.getColumnHeaders()) {
+				
+				String doubleQuotes = "\"";
+				String headerName = header.getName();
+				headerName = doubleQuotes.concat(headerName);
+				
+				headers.add(header.getName());
+			}
+
+			
+			// Print the rows of data.
+			for (List<String> rowValues : gaData.getRows()) {
+				
+				for (String value : rowValues) {
+					String doubleQuotes = "\"";
+					value = doubleQuotes.concat(value.concat(doubleQuotes));
+					datarows.add(value);
+					
+				}
+			}
+		} else {
+
+			datarows.add("No Data");	
+		}
+
+		
+		HashMap dataSet = new HashMap();
+		
+		dataSet.put("header", headers);
+		dataSet.put("datarows", datarows);
+		
+		return dataSet;
+	}
+	
+	
+	
+
+}
+
+
+

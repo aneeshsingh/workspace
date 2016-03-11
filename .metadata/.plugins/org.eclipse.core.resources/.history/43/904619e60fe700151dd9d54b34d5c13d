@@ -1,0 +1,125 @@
+package com.macquarie.analytics;
+
+import org.json.JSONObject;
+
+import com.google.api.services.analytics.Analytics;
+import com.google.api.services.analytics.model.GaData;
+
+import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonWriter;
+
+
+public class getGAData {
+
+	public static String getGAData(String product_Id) throws ClassNotFoundException, UnsupportedEncodingException, SQLException{
+		
+		String completeGAData = "";
+		
+		
+
+	      Analytics analytics = HelloAnalytics.initializeAnalytics();
+
+	      String profile = HelloAnalytics.getFirstProfileId(analytics);
+	      System.out.println("First Profile Id: "+ profile);
+	      printResults(getResults(analytics, profile));
+	      
+	      String table_id = "ga:"+profile;
+	      
+	      GaData gaData = executeDataQuery(analytics, table_id);
+	      printReportInfo(gaData);
+	      printProfileInfo(gaData);
+	      printQueryInfo(gaData);
+	      printPaginationInfo(gaData);
+	      printTotalsForAllResults(gaData);
+	      printColumnHeaders(gaData);
+	      printDataTable(gaData);
+	      
+	      
+	     
+	      GaData gaDataConv = GetConversion.executeViewsDataQuery(analytics, table_id, startDate, endDate, url, action);
+	      printReportInfo(gaDataConv);
+	      printProfileInfo(gaDataConv);
+	      printQueryInfo(gaDataConv);
+	      printPaginationInfo(gaDataConv);
+	      printTotalsForAllResults(gaDataConv);
+	      printColumnHeaders(gaDataConv);
+	      printDataTable(gaDataConv);
+	      
+	      
+	      GaData gaDataScreenSizes = GetScreenSizes.executeScreenSizesDataQuery(analytics, table_id, startDate, endDate, url);
+	      printDataTable(gaDataScreenSizes);     
+	 
+	      GaData gaDataDevices = GetDevices.executeDevicesDataQuery(analytics, table_id, startDate, endDate, url);
+	      printDataTable(gaDataDevices); 
+	      
+	      GaData gaDataTime = GetTime.executeTimeDataQuery(analytics, table_id, startDate, endDate, url);
+	      printDataTable(gaDataTime);
+	 
+	      GaData gaReturningNew = GetReturningNew.executeReturnNewDataQuery(analytics, table_id, startDate, endDate, url);
+	      printDataTable(gaReturningNew);
+	            
+	      GaData gaGeneralData = GetGeneralData.executeGeneralDataDataQuery(analytics, table_id, startDate, endDate, url);
+	      printDataTable(gaGeneralData);
+	      
+	      GaData gaReferralData = GetReferralData.executeReferralDataQuery(analytics, table_id, startDate, endDate, url);
+	      printDataTable(gaReferralData);
+	      
+	      System.out.println("**********************");
+	      System.out.println("Conversion Rate:-"+GetConversion.getConversion(analytics, table_id, startDate, endDate, url, action));
+	      System.out.println("**********************");
+	   
+	      allGAData.put("gaDataConv", printHTMLDataTable(gaDataConv));
+	      allGAData.put("gaDataScreenSizes", printHTMLDataTable(gaDataScreenSizes));
+	      allGAData.put("gaDataDevices", printHTMLDataTable(gaDataDevices));
+	      allGAData.put("gaDataTime", printHTMLDataTable(gaDataTime));
+	      allGAData.put("gaReturningNew", printHTMLDataTable(gaReturningNew));
+	      allGAData.put("gaGeneralData", printHTMLDataTable(gaGeneralData));
+	      allGAData.put("gaReferralData", printHTMLDataTable(gaReferralData));
+	      
+	      return allGAData;
+	      
+	      
+	    
+		
+		
+		return completeGAData;
+	}
+	
+	public static JsonObject createImageJSON(String Competitor_Screen_Shot_name_desktop, String Competitor_Screen_Shot_name_mobile, String Competitor_Screen_Shot_name_tablet, String Product_Screen_Shot_name_desktop, String Product_Screen_Shot_name_tablet, String Product_Screen_Shot_name_mobile ){
+		
+		Competitor_Screen_Shot_name_desktop = "http://purelyfit.com.au/php/results/"+Competitor_Screen_Shot_name_desktop;
+		Competitor_Screen_Shot_name_mobile = "http://purelyfit.com.au/php/results/"+Competitor_Screen_Shot_name_mobile;
+		Competitor_Screen_Shot_name_tablet = "http://purelyfit.com.au/php/results/"+Competitor_Screen_Shot_name_tablet;
+		Product_Screen_Shot_name_desktop = "http://purelyfit.com.au/php/results/"+Product_Screen_Shot_name_desktop;
+		Product_Screen_Shot_name_tablet = "http://purelyfit.com.au/php/results/"+Product_Screen_Shot_name_tablet;
+		Product_Screen_Shot_name_mobile = "http://purelyfit.com.au/php/results/"+Product_Screen_Shot_name_mobile;
+		
+		
+		JsonObject personObject = Json.createObjectBuilder()
+				.add("Competitor_Screen_Shot_name_desktop", Competitor_Screen_Shot_name_desktop)
+				.add("Competitor_Screen_Shot_name_mobile", Competitor_Screen_Shot_name_mobile)
+				.add("Competitor_Screen_Shot_name_tablet", Competitor_Screen_Shot_name_tablet)
+				.add("Product_Screen_Shot_name_desktop", Product_Screen_Shot_name_desktop)
+				.add("Product_Screen_Shot_name_tablet", Product_Screen_Shot_name_tablet)
+				.add("Product_Screen_Shot_name_mobile", Product_Screen_Shot_name_mobile)
+				.build();
+
+		return personObject;
+	}
+	
+	
+	
+	
+
+}
+
+
+
